@@ -15,16 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-<<<<<<< HEAD
-
-urlpatterns = [
-=======
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 urlpatterns = [
     path('', lambda r: HttpResponseRedirect(reverse('polls:index'))),
->>>>>>> 57bcc81a0e338b9334b44927bcb42b5650b2c4df
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
 ]
