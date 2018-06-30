@@ -22,4 +22,5 @@ urlpatterns = [
     path('', lambda r: HttpResponseRedirect(reverse('polls:index'))),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
+    path('blog/', include('blog.urls')),
 ]
