@@ -1,13 +1,17 @@
 from django.db import models
 from django.utils import timezone
 
+from taggit.managers import TaggableManager
+
 
 class Post(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE,)
-    title = models.CharField(max_length=200)
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=200, null=True)
     text = models.TextField()
+    slug = models.SlugField(null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    tags = TaggableManager()
 
     def publish(self):
         self.published_date = timezone.now()
@@ -18,7 +22,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    item = models.ForeignKey(Post, on_delete=models.CASCADE)
+    item = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)

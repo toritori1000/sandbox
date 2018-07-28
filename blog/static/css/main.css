@@ -1,0 +1,30 @@
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.top-buffer {
+    margin-top:20px;
+}
+
+span {
+    width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden
+}
+
+.jumbotron {
+    padding: 5em inherit;
+}
+
+.post {
+   font-size: 19px;
+}
+
+.img-fluid {
+    max-width: 250px;
+    padding-bottom: 20px;
+}
+

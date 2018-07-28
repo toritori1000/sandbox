@@ -18,9 +18,12 @@ from django.urls import include, path
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', lambda r: HttpResponseRedirect(reverse('polls:index'))),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
     path('blog/', include('blog.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

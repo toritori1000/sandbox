@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Bootstrap 4</h1>
+        <p>This is some text</p>
+        <p>This is some text</p>
+        <p>This is some text</p>
+        <a  href="#" class="btn btn-primary btn-lg">More...</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+        {% if tag %}
+            <h3>Posts tagged with "{{ tag.name }}"</h3>
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        {% for post in post_info_list %}
+        <div class="col-lg-4">
+            <img class="img-fluid" src="{% static 'images/firstxray.png' %}" alt="Sample photo">
+            <h3>{{ post.title }}</h3>
+            <span>{{ post.text }}</span>
+            <a href="{{ post.url }}" class="btn btn-default btn-lg">More...</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
