@@ -5,13 +5,19 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1>Bootstrap 4</h1>
-        <p>This is some text</p>
-        <p>This is some text</p>
-        <p>This is some text</p>
-        <a  href="#" class="btn btn-primary btn-lg">More...</a>
+        <div class="row">
+            <div class="col-xs-9">
+                <h1>Bootstrap 4</h1>
+                <p>This is some text</p>
+                <p>This is some text</p>
+                <p>This is some text</p>
+                <a  href="#" class="btn btn-primary btn-lg">More...</a>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 <div class="container">
     <div class="row">
@@ -23,7 +29,7 @@
     </div>
 
     <div class="row top-buffer">
-        {% for post in post_info_list %}
+        {% for post in posts %}
         <div class="col-lg-4">
             <img class="img-fluid" src="{% static 'images/firstxray.png' %}" alt="Sample photo">
             <h3>{{ post.title }}</h3>
