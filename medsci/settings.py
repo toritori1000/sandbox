@@ -30,7 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Als
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
+    'aldjemy',
     'blog',
     'taggit',
 ]

@@ -1,15 +1,22 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+
 from django.urls import reverse
 from django.utils import timezone
 
-from taggit.models import Tag # ADD LIST OF POSTS WITH TAG
+from taggit.models import Tag
 
 from .models import Post, Comment
+from django.core.paginator import Paginator
+from django.db.models.query import prefetch_related_objects
 
 from functools import reduce
 import operator
 from django.db.models import Q
+
+import pprint
+
+
 
 def index(request, tag_slug=None):
     posts = Post.objects.all()
@@ -20,8 +27,10 @@ def index(request, tag_slug=None):
         posts = posts.filter(tags__in=[tag])
         context['tag'] = tag
 
+    tags = Tag.objects.all()
     post_items = get_post_items(posts)
     context['posts'] = post_items
+    context['tags'] = tags
 
     return render(request, 'blog/index.html', context)
 
@@ -40,6 +49,7 @@ def get_post_items(posts):
 def post_page(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
     comments = Comment.objects.all()
+    tags = Tag.objects.all()
 
     if request.POST:
         comment = request.POST.get("comment")
@@ -49,6 +59,10 @@ def post_page(request, post_slug):
         else:
             tbl_obj = Comment(item=post, text=comment, created_date=timezone.now(), published_date=timezone.now())
             tbl_obj.save()
+
+            # add respective tags to the post as an attribute
+            match_tags = tags.filter(id=post.pk)
+            setattr(post, 'tags', match_tags)
 
             context = {
                 'post': post,
