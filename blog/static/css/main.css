@@ -28,3 +28,22 @@ span {
     padding-bottom: 20px;
 }
 
+.img-box {
+    background-color: white;
+    max-width: 250px;
+    height:100%;
+
+}
+
+.custom-tag {
+    color: tomato;
+    /* wrap button text */
+   white-space:normal !important;
+    word-wrap: break-word;
+    border: 1px solid white;
+}
+
+.custom-tag:hover {
+    background-color: #D4E6F1;
+}
+
