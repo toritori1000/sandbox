@@ -11,8 +11,7 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from django.db.models.query import prefetch_related_objects
 from django.db.models import Q
-#from blog.models import Post, Comment, Category, PostImage
-from blog.models import Post, Comment, Category
+from blog.models import Post, Comment, Category, PostImage
 from taggit.models import Tag
 
 import pprint
@@ -73,8 +72,8 @@ def post_page(request, post_slug):
     comments = Comment.objects.all()
     tags = Tag.objects.all()
 
-    #image_obj = get_object_or_404(PostImage, id=1)
-    #image_obj_2 = get_object_or_404(PostImage, id=2)
+    image_obj = get_object_or_404(PostImage, id=1)
+    image_obj_2 = get_object_or_404(PostImage, id=2)
 
     if request.POST:
         comment = request.POST.get("comment")
@@ -103,8 +102,8 @@ def post_page(request, post_slug):
             'post': post,
             'comments': comments,
             'image_url': image_obj.image,
-            # 'image_obj': image_obj,
-            # 'image_obj_2': image_obj_2
+            'image_obj': image_obj,
+            'image_obj_2': image_obj_2
         }
 
         return render(request, 'blog/post_page.html', context)

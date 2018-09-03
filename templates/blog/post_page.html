@@ -5,8 +5,6 @@
 {% block content %}
 
 <div class="container">
-
-    <!--
     TTTTTest QQQQ
     </br>
     {% thumbnail item.image "100x100" crop="center" as im %} 
@@ -19,9 +17,8 @@
         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
     {%endthumbnail%} 
     W44TTTTTest WWW 
-    -->
-    <!-- Fixed image height-->
-    <!--
+
+    <!-- Fixed image height -->
     {% thumbnail image_obj_2.image "x100" as im %} 
         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
     {%endthumbnail%} 
@@ -38,9 +35,7 @@
 </br></br>
     {% thumbnail image_obj.image "150x100" crop="center" as im %} 
     AAAA {{im.width}} BBB {{im.height}} CCC 
-        
     {%endthumbnail%} 
-    -->
 
     <div class="row">
         <div class="col-md-8" style="padding-top: 5em;">
