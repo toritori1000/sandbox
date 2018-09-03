@@ -27,3 +27,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('blog/', include('blog.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# This is required to display images in the 'media' directory
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

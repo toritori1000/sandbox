@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Post, Comment
+from blog.models import Post, Comment, Category, PostImage
+# from blog.models import Post, Comment, Category
+from sorl.thumbnail.admin import AdminImageMixin
 
 
 class CommentInline(admin.TabularInline):
@@ -9,10 +11,45 @@ class CommentInline(admin.TabularInline):
 
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['author', 'title', 'slug', 'text', 'tags']}),
-        ('Date Information', {'fields': ['published_date'], 'classes': ['collapse']})
+        (None, {'fields': ['author', 'title', 'slug', 'text', 'image_set',
+                           'tags', 'categories']}),
+        ('Date Information', {'fields': ['published_date'],
+                              'classes': ['collapse']})
     ]
     inlines = [CommentInline]
 
 
+# Display image in admin
+class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
+    # explicitly reference fields to be shown, note image_tag is read-only
+    # fields = ('image', 'image_tag', 'title', 'description', 'external_url',
+    #          'img2', 'img2_tag', 'img2_title', 'img2_description',
+    #          'img2_external_url')
+
+    fieldsets = (
+        (None, {
+            'fields': ('image', 'image_tag', 'title', 'description',
+                       'external_url')
+        }),
+        ('More images', {
+            'classes': ('collapse', 'open'),
+            'fields': ('img2', 'img2_tag', 'img2_title', 'img2_description',
+                       'img2_external_url')
+        }),
+        ('More images', {
+            'classes': ('collapse', 'open'),
+            'fields': ('img3', 'img3_tag', 'img3_title', 'img3_description',
+                       'img3_external_url')
+        }),
+        ('More images', {
+            'classes': ('collapse', 'open'),
+            'fields': ('img4', 'img4_tag', 'img4_title', 'img4_description',
+                       'img4_external_url')
+        }),
+    )
+    readonly_fields = ('image_tag', 'img2_tag', 'img3_tag', 'img4_tag')
+
+
 admin.site.register(Post, PostAdmin)
+admin.site.register(Category)
+admin.site.register(PostImage, PostImageAdmin)

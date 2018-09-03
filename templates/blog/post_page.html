@@ -1,8 +1,47 @@
-{% extends "blog/base.html" %}
-{% load static %}
+{% extends "blog/base.html" %} 
+{% load static %} 
+{% load thumbnail %} 
 
 {% block content %}
+
 <div class="container">
+
+    <!--
+    TTTTTest QQQQ
+    </br>
+    {% thumbnail item.image "100x100" crop="center" as im %} 
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
+    {%endthumbnail%} 
+    Q22TTTTTest QQQQ
+    {{ image_obj.image }}
+    Y33TTTTTest YYYY 
+    {% thumbnail image_obj.image "150x100" crop="center" as im %} 
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
+    {%endthumbnail%} 
+    W44TTTTTest WWW 
+    -->
+    <!-- Fixed image height-->
+    <!--
+    {% thumbnail image_obj_2.image "x100" as im %} 
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
+    {%endthumbnail%} 
+    ZZ55TTTTTest ZZZ 
+    {% thumbnail image_obj_2.image "x150" as im %} 
+        <img style="margin:{{ im|margin:"x150" }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
+    {%endthumbnail%} 
+    FF66TTTTTest FFF 
+    {% thumbnail image_obj_2.image "x300" as im %} 
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='blog-img'> 
+    {%endthumbnail%} 
+    DD77TTTTTest DDD 
+
+</br></br>
+    {% thumbnail image_obj.image "150x100" crop="center" as im %} 
+    AAAA {{im.width}} BBB {{im.height}} CCC 
+        
+    {%endthumbnail%} 
+    -->
+
     <div class="row">
         <div class="col-md-8" style="padding-top: 5em;">
             <h1>{{ post.title }}</h1>
@@ -13,29 +52,29 @@
             </div>
 
             <p style="font-size: 14px;">
-                Tags:
-                {% for tag in post.tags.all %}
-                    <a href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
-                    {% if not forloop.last %}, {% endif %}
-                {% endfor %}
+                Tags: {% for tag in post.tags.all %}
+                <a href="{% url 'post_by_tag' tag.slug %}">{{ tag.name }}</a>
+                {% if not forloop.last %}, {% endif %} {% endfor %}
             </p>
 
+            <!--
             <h4>Comment:</h4>
             <form method="POST" action="">{% csrf_token %}
                 <textarea name="comment" cols="50" rows="3" autocomplete="off"></textarea><br>
                 <input class="btn btn-primary" type="submit" value="Submit">
             </form>
+            -->
         </div>
     </div>
 
+    <!--
     <div class="row top-buffer">
-        <div class="col-md-8" >
-            {% for comment in comments %}
-                {% if comment.item.title == post.title %}
-                    <p>{{ comment.text }}</p>
-                {% endif %}
-            {% endfor %}
+        <div class="col-md-8">
+            {% for comment in comments %} {% if comment.item.title == post.title %}
+            <p>{{ comment.text }}</p>
+            {% endif %} {% endfor %}
         </div>
     </div>
+    -->
 </div>
 {% endblock %}

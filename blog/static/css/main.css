@@ -43,7 +43,23 @@ span {
     border: 1px solid white;
 }
 
-.custom-tag:hover {
+.custom-cat {
+    /*color: green;*/
+    /*color: #228B22;*/
+    color: #009900;
+    /* wrap button text */
+   white-space:normal !important;
+    word-wrap: break-word;
+    border: 1px solid white;
+}
+
+.custom-tag:hover, .custom-cat:hover {
     background-color: #D4E6F1;
 }
 
+.blog-img { 
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+} 
