@@ -35,6 +35,8 @@ def index(request, tag_slug=None, cat_slug=None):
     tags = Tag.objects.all()
     post_items = get_post_items(posts)
     context['posts'] = post_items
+
+    # For sidebar
     context['tags'] = tags
     context['categories'] = Category.objects.all()
 
@@ -105,6 +107,10 @@ def post_page(request, post_slug):
             'image_obj': image_obj,
             'image_obj_2': image_obj_2
         }
+
+        # For sidebar
+        context['tags'] = tags
+        context['categories'] = Category.objects.all()
 
         return render(request, 'blog/post_page.html', context)
 

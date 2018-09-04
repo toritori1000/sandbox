@@ -22,29 +22,26 @@ class PostAdmin(admin.ModelAdmin):
 # Display image in admin
 class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
     # explicitly reference fields to be shown, note image_tag is read-only
-    # fields = ('image', 'image_tag', 'title', 'description', 'external_url',
-    #          'img2', 'img2_tag', 'img2_title', 'img2_description',
-    #          'img2_external_url')
-
+    # Open/collapsablei field sets
     fieldsets = (
         (None, {
-            'fields': ('image', 'image_tag', 'title', 'description',
+            'fields': ('image', 'image_tag', 'title', 'legend', 'description',
                        'external_url')
         }),
         ('More images', {
             'classes': ('collapse', 'open'),
-            'fields': ('img2', 'img2_tag', 'img2_title', 'img2_description',
-                       'img2_external_url')
+            'fields': ('img2', 'img2_tag', 'img2_title', 'legend2',
+                       'img2_description', 'img2_external_url')
         }),
         ('More images', {
             'classes': ('collapse', 'open'),
-            'fields': ('img3', 'img3_tag', 'img3_title', 'img3_description',
-                       'img3_external_url')
+            'fields': ('img3', 'img3_tag', 'img3_title', 'legend3',
+                       'img3_description', 'img3_external_url')
         }),
         ('More images', {
             'classes': ('collapse', 'open'),
-            'fields': ('img4', 'img4_tag', 'img4_title', 'img4_description',
-                       'img4_external_url')
+            'fields': ('img4', 'img4_tag', 'img4_title', 'legend4',
+                       'img4_description', 'img4_external_url')
         }),
     )
     readonly_fields = ('image_tag', 'img2_tag', 'img3_tag', 'img4_tag')

@@ -5,46 +5,46 @@
 {% block content %}
 
 <div class="container">
-    TTTTTest QQQQ
-    </br>
-    {% thumbnail item.image "100x100" crop="center" as im %} 
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
-    {%endthumbnail%} 
-    Q22TTTTTest QQQQ
-    {{ image_obj.image }}
-    Y33TTTTTest YYYY 
-    {% thumbnail image_obj.image "150x100" crop="center" as im %} 
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
-    {%endthumbnail%} 
-    W44TTTTTest WWW 
-
-    <!-- Fixed image height -->
-    {% thumbnail image_obj_2.image "x100" as im %} 
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
-    {%endthumbnail%} 
-    ZZ55TTTTTest ZZZ 
-    {% thumbnail image_obj_2.image "x150" as im %} 
-        <img style="margin:{{ im|margin:"x150" }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> 
-    {%endthumbnail%} 
-    FF66TTTTTest FFF 
-    {% thumbnail image_obj_2.image "x300" as im %} 
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='blog-img'> 
-    {%endthumbnail%} 
-    DD77TTTTTest DDD 
-
-</br></br>
-    {% thumbnail image_obj.image "150x100" crop="center" as im %} 
-    AAAA {{im.width}} BBB {{im.height}} CCC 
-    {%endthumbnail%} 
-
+    
     <div class="row">
-        <div class="col-md-8" style="padding-top: 5em;">
+        <div class="col-md-12">
+            <!-- Top empty space -->
+            </br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
             <h1>{{ post.title }}</h1>
-            <p>Author: {{ post.author }}</p>
+            <!-- 
+            <p>Contributed by: {{ post.author }}</p>
+            -->
 
             <div class="post">
                 <p>{{ post.text }}</p>
             </div>
+
+            <!-- Image: Fixed height; Wrap text around with align left. -->
+            {% thumbnail image_obj_2.image "x300" as im %} 
+                <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
+            {%endthumbnail%} 
+            <p>
+                AAA111
+                {{ image_obj_2.description}}
+            </p>
+        </br>
+
+            {% thumbnail image_obj_2.img2 "x300" as im %} 
+            <!-- Wrap text around with align right. -->
+                <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
+            {%endthumbnail%} 
+        
+            <p>
+                AAA222
+                {{ image_obj_2.img2_description}}
+            </p>
+            
+
+
 
             <p style="font-size: 14px;">
                 Tags: {% for tag in post.tags.all %}
@@ -60,16 +60,9 @@
             </form>
             -->
         </div>
+        <!-- Sidebar -->
+        {% include "includes/sidebar.html" %}
     </div>
-
-    <!--
-    <div class="row top-buffer">
-        <div class="col-md-8">
-            {% for comment in comments %} {% if comment.item.title == post.title %}
-            <p>{{ comment.text }}</p>
-            {% endif %} {% endfor %}
-        </div>
-    </div>
-    -->
 </div>
+
 {% endblock %}

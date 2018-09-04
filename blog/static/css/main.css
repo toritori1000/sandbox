@@ -57,9 +57,26 @@ span {
     background-color: #D4E6F1;
 }
 
-.blog-img { 
+.blog-img-left { 
     border-width: 1px; 
     border-color: grey; 
     border-style: solid; 
     padding: 3px; 
+    margin: 5px 20px 5px 20px; 
+} 
+
+.blog-img-left { 
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 5px 20px 5px 2px; 
+} 
+
+.blog-img-right { 
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 5px 2px 5px 20px; 
 } 

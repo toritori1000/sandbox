@@ -47,6 +47,7 @@ class PostImage(models.Model):
     image = models.ImageField(
         upload_to=os.path.join('images', 'blog'))
     title = models.CharField(max_length=255)
+    legend = models.TextField(blank=True, null=True)
     description = models.TextField()
     external_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -72,6 +73,7 @@ class PostImage(models.Model):
     img2 = models.ImageField(
         upload_to=os.path.join('images', 'blog'), blank=True, null=True)
     img2_title = models.TextField(blank=True, null=True)
+    legend2 = models.TextField(blank=True, null=True)
     img2_description = models.TextField(blank=True, null=True)
     img2_external_url = models.URLField(blank=True, null=True)
     img2_created_at = models.DateTimeField(auto_now_add=True, blank=True,
@@ -95,6 +97,7 @@ class PostImage(models.Model):
     img3 = models.ImageField(
         upload_to=os.path.join('images', 'blog'), blank=True, null=True)
     img3_title = models.TextField(blank=True, null=True)
+    legend3 = models.TextField(blank=True, null=True)
     img3_description = models.TextField(blank=True, null=True)
     img3_external_url = models.URLField(blank=True, null=True)
     img3_created_at = models.DateTimeField(auto_now_add=True, blank=True,
@@ -117,6 +120,7 @@ class PostImage(models.Model):
     #
     img4 = models.ImageField(
         upload_to=os.path.join('images', 'blog'), blank=True, null=True)
+    legend4 = models.TextField(blank=True, null=True)
     img4_title = models.TextField(blank=True, null=True)
     img4_description = models.TextField(blank=True, null=True)
     img4_external_url = models.URLField(blank=True, null=True)

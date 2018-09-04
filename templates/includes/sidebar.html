@@ -1,0 +1,74 @@
+<!-- Sidebar Widgets Column -->
+<div class="col-md-3 col-lg-3">
+
+    <!-- Categories Widget -->
+    <div class="card my-3">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+            {% for category in categories %}
+            <tag class="slug"></tag>
+            <a href="{{ cat_base_url }}{{ category.slug }}" class="btn btn-sm custom-cat" role="button">
+                {{ category.title }}
+            </a>
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+    <!-- end: Categories widget -->
+
+
+    <!-- Tags Widget -->
+    <div class="card">
+        <h5 class="card-header">Tags</h5>
+        <div class="card-body">
+            {% for tag in tags %}
+            <tag class="slug"></tag>
+            <!-- 
+                    <a href="{{request.get_host}}/{{tag.slug}}" class="btn btn-sm custom-tag" role="button">
+                    -->
+            <a href="{{ tag_base_url }}{{ tag.slug }}" class="btn btn-sm custom-tag" role="button">
+                <i class="fa fa-tag"></i>&nbsp;{{ tag.slug }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- end: Tags widget -->
+
+    <!-- Side Widget -->
+    <div class="card my-3">
+        <h5 class="card-header">Archive</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">Insulin</a>
+                        </li>
+                        <li>
+                            <a href="#">Polio</a>
+                        </li>
+                        <li>
+                            <a href="#">Black death</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">Quinine</a>
+                        </li>
+                        <li>
+                            <a href="#">X-ray</a>
+                        </li>
+                        <li>
+                            <a href="#">Hand wash</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
