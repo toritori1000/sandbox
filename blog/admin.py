@@ -17,6 +17,15 @@ class PostAdmin(admin.ModelAdmin):
                               'classes': ['collapse']})
     ]
     inlines = [CommentInline]
+    """
+    def save_related(self, request, form, formsets, change):
+        if not form.cleaned_data['categories']:
+            category, created = Type.objects.get_or_create(name="Other")
+            form.cleaned_data['type'] = [type]
+        form.save_m2m()
+        for formset in formsets:
+            self.save_formset(request, form, formset, change=change)
+    """
 
 
 # Display image in admin

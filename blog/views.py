@@ -36,7 +36,7 @@ def index(request, tag_slug=None, cat_slug=None):
     post_items = get_post_items(posts)
     context['posts'] = post_items
 
-    # For sidebar
+    # For sideba
     context['tags'] = tags
     context['categories'] = Category.objects.all()
 
@@ -63,7 +63,15 @@ def get_post_items(posts):
     post_items = []
     for post in posts:
         post_url = reverse('post_page', kwargs={'post_slug': post.slug})
-        post_item = {'title': post.title, 'text': post.text, 'url': post_url}
+        post_item = {
+            'title': post.title,
+            'text': post.text,
+            'url': post_url,
+            # many-to-many field
+            'categories': post.categories.all(),
+            # foreign-key field
+            'image_set': post.image_set,
+        }
         post_items.append(post_item)
 
     return post_items
@@ -74,8 +82,12 @@ def post_page(request, post_slug):
     comments = Comment.objects.all()
     tags = Tag.objects.all()
 
-    image_obj = get_object_or_404(PostImage, id=1)
-    image_obj_2 = get_object_or_404(PostImage, id=2)
+    image_obj = get_object_or_404(PostImage, id=post.image_set_id)
+    #image_obj = get_object_or_404(PostImage, id=1)
+    #image_obj_2 = get_object_or_404(PostImage, id=2)
+
+    test = "WWWQQQ"
+    test = post.image_set_id
 
     if request.POST:
         comment = request.POST.get("comment")
@@ -105,12 +117,12 @@ def post_page(request, post_slug):
             'comments': comments,
             'image_url': image_obj.image,
             'image_obj': image_obj,
-            'image_obj_2': image_obj_2
         }
 
         # For sidebar
         context['tags'] = tags
         context['categories'] = Category.objects.all()
+        context['test'] = test
 
         return render(request, 'blog/post_page.html', context)
 

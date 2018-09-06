@@ -155,7 +155,8 @@ class Post(models.Model):
     # assuming the 1st row of Category table is defined as "Other".
     categories = models.ManyToManyField(Category, default=1)
     image_set = models.ForeignKey(PostImage, on_delete=models.CASCADE,
-                                  blank=True, null=True)
+                                  blank=True, null=True,
+                                  related_name='image_set')
 
     slug = models.SlugField(unique=True, null=True, blank=True)
 

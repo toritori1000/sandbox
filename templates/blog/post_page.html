@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container">
-    
+
     <div class="row">
         <div class="col-md-12">
             <!-- Top empty space -->
@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <h1>{{ post.title }}</h1>
+            <h2>{{ post.title }}</h2>
             <!-- 
             <p>Contributed by: {{ post.author }}</p>
             -->
@@ -24,23 +24,22 @@
             </div>
 
             <!-- Image: Fixed height; Wrap text around with align left. -->
-            {% thumbnail image_obj_2.image "x300" as im %} 
+            {% thumbnail image_obj.image "x300" as im %} 
                 <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
             {%endthumbnail%} 
             <p>
-                AAA111
-                {{ image_obj_2.description}}
+                {{ image_obj.description}}
             </p>
         </br>
 
-            {% thumbnail image_obj_2.img2 "x300" as im %} 
+            {% thumbnail image_obj.img2 "x300" as im %} 
             <!-- Wrap text around with align right. -->
                 <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
             {%endthumbnail%} 
         
             <p>
                 AAA222
-                {{ image_obj_2.img2_description}}
+                {{ image_obj.img2_description}}
             </p>
             
 
