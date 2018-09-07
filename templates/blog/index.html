@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %} 
 {% load static %} 
 {% load thumbnail %} 
+{% load split_list %} 
+
 
 {% block content %}
 
@@ -19,121 +21,36 @@
 </div>
 
 
-
 <div class="container">
     <div class="row top-buffer">
-        <div class="col-md-9 col-lg-9">
-            {% for post in posts %}
-                <div class="row">
-                        <div>
-                            <!-- Image: Fixed height; Wrap text around with align left. -->
-                            {% thumbnail post.image_set.image "200x200" crop="center" as im %}
-                            <img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-left" /> {% endthumbnail %}
+        
+        <div class="col-sm-9 col-md-9 col-lg-9">
+
+            <!-- Display 3 image per row using 'columns' filter -->
+            {% for row in posts|columns:3 %}
+                <div class="row row-no-padding">
+                    {% for post in row %}
+                        <div class="col-sm-6 col-md-4 col-lg-4 img-col">
+                            <!-- Image: size determins spacing between columns. -->
+                            {% thumbnail post.image_set.image "210x210" crop="center" as im %}
+                            </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-left" />{% endthumbnail %}
                             <p>
-                                {{ post.text }}
+                                <span class="img-title">{{ post.title }}</span>
                             </p>
+                            <p>
+                                {{ post.text|truncatewords:25 }}
+                                <a href="{{ post.url }}" class="btn btn-default btn-md">More ...</a>
+                                
+                            </p>
+                            <!--
+                            <img src="{{post.image_set.image.url}}" height="220px" width="220px" class="xblog-img-left"/>
+                            -->
                         </div>
+                    {% endfor %}
                 </div>
-                <!-- end row -->
-           {% endfor %}
+            {% endfor %}
         </div>
         <!-- Sidebar col-md-3 -->
-        {% include "includes/sidebar.html" %}
-    </div>
-</div>
-
-        LLLLLLLLLLLLLLLLLL
-    <div class="row top-buffer">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-12 col-lg-12 img-box">
-                    ModelAdmin.save_related(request, form, formsets, change)[source]¶ The save_related method is given the HttpRequest, the parent
-                    ModelForm instance, the list of inline formsets and a boolean value based on whether the parent is being added or
-                    changed. Here you can do any pre- or post-save operations for objects related to the parent. Note that at this point
-                    the parent object and its form have already been saved. ModelAdmin.get_autocomplete_fields(request)¶ The get_autocomplete_fields()
-                    method is given the HttpRequest and is expected to return a list or tuple of field names that will be displayed with
-                    an autocomplete widget as described above in the ModelAdmin.autocomplete_fields section. ModelAdmin.get_readonly_fields(request,
-                    obj=None)¶ AAAA
-                </div>
-            </div>
-        </div>
-        
-         {% for post in posts %} 
-         {% endfor %}
-        
-        <!-- Sidebar -->
-        {% include "includes/sidebar.html" %}
-    </div>
-</div>
-
-
-
-
-
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-9">
-            {% if tag %}
-            <h3>Posts tagged with "{{ tag.name }}"</h3>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row top-buffer">
-        <div class="col-md-9 col-lg-9">
-            <div class="row">
-                {% for post in posts %}
-                <div class="col-md-3 col-lg-3 img-box">
-
-                <!-- Image: Fixed height; Wrap text around with align left. -->
-                <!-- access forign-key field -->
-                <!-- access many-to-many field -->
-
-                <!--
-                MMMMM1111 {{ post.image_set.image}}GGGG
-                
-                {% for cat in post.categories.all %}
-                CCC111 {{ cat.title }} SSS {{ cat.slug }}CCC222
-                {% endfor %}
-                MMMM2222M
-
-                 NNNN: {{ post.title }}, Area: {{ place.categories.all|join:", " }}
-                -->
-
-            <!-- Image: Fixed height; Wrap text around with align left. -->
-            <!--
-            {% thumbnail post.image_set.image "x150" as im %} 
-                <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
-            {%endthumbnail%} 
-            -->
-
-            <!-- thumnail is defined crop top and figure max-height in css  -->
-             {% thumbnail post.image_set.image "200x200" crop="center" as im %}
-            <figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-left"/></figure>
-            {% endthumbnail %}
-            <h6>
-                {{ post.image_set.title}}
-            </h6>
-            <p>
-                {{ post.image_set.description}}
-            </p>
-            DDDDPP
-
-            <!--
-                    <img class="img-fluid" src="{% static 'images/firstxray.png' %}" alt="Sample photo">
-            -->
-                    
-                    <h3>{{ post.title }}</h3>
-                    <span>{{ post.text }}</span>
-                    <a href="{{ post.url }}" class="btn btn-default btn-lg">More...</a>
-                </div>
-
-                {% endfor %}
-            </div>
-        </div>
-        
-        <!-- Sidebar -->
         {% include "includes/sidebar.html" %}
     </div>
 </div>

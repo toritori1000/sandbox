@@ -71,14 +71,6 @@ span {
     border-color: grey; 
     border-style: solid; 
     padding: 3px; 
-    margin: 5px 20px 5px 20px; 
-} 
-
-.blog-img-left { 
-    border-width: 1px; 
-    border-color: grey; 
-    border-style: solid; 
-    padding: 3px; 
     margin: 5px 20px 5px 2px; 
 } 
 
@@ -89,7 +81,6 @@ span {
     padding: 3px; 
     margin: 5px 2px 5px 20px; 
 } 
-
 
 .side-bar {
     background-color: #f9fbfc; 
@@ -112,4 +103,29 @@ span {
 .post-title {
     font-weight: bold;
     font-size: 200%
+}
+.img-col {
+    color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 5px 5px 10px;
+    background-color: #306754;
+    background-color: #7F462C; 
+    background-color: #0C090A; 
+    background-color: #141517;
+    background-color: #1E1F21;
+    background-color: #323335; 
+    background-color: #6799A3; 
+    background-color: #1f5846; 
+    background-color: #393d40; 
+}
+
+.img-col:hover {
+  opacity: 0.8;
+}
+
+
+ .img-title {
+      font-size: 24px;
+      font-family: 'Raleway',sans-serif;
 }
