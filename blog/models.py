@@ -218,10 +218,10 @@ class EventDate(models.Model):
     class Meta:
         verbose_name = "Event Date"
         verbose_name_plural = "Event Dates"
-        # Known django bug: https: // code.djangoproject.com/ticket/12028
-        # An "UNIQUE constraint failed: ..." error occurs if the combination.
-        # already exists in database.
-        # https://stackoverflow.com/questions/49531470/django-admin-inline-duplicate-key-value-violates-unique-constraint
+        #
+        # Note: need a 'clean_date' check in admin.py to deal with the error below.
+        # "UNIQUE constraint failed: ..."
+        #
         unique_together = ('century', 'decade', 'year', 'month', 'day')
 
     def none_to_zero(self):

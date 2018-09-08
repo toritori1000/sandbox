@@ -55,8 +55,8 @@ class EventDateAdminForm(forms.ModelForm):
         # __all_ or a list of the fields that you want to include in your form
         fields = '__all__'
 
-    # This is the solution for the following error.
-    # An "UNIQUE constraint failed: ..." error occurs related to unique fields.
+    # This is the solution for the following unique fields related error.
+    # "UNIQUE constraint failed: ..."
     # https: // code.djangoproject.com/ticket/12028
     #
     # Important! The function name 'clean_date' needs to match the variabl

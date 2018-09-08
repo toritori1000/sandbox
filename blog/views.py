@@ -29,10 +29,11 @@ def index(request, tag_slug=None, cat_slug=None):
     if cat_slug:
         cat_ids = Category.objects.filter(
             slug=cat_slug).values_list('id', flat=True)
-        posts = posts.filter(category_id__in=cat_ids)
+        posts = posts.filter(id__in=cat_ids)
         context['cat'] = cat_ids
 
-    tags = Tag.objects.all()
+    # Not to use tags = Tag.objects.all() to get only tags that has Post assoc
+    tags = Post.tags.all()
     post_items = get_post_items(posts)
     context['posts'] = post_items
 
