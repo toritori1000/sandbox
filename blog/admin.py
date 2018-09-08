@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post, Comment, Category, PostImage
+from blog.models import Post, Comment, Category, PostImage, EventDate
 # from blog.models import Post, Comment, Category
 from sorl.thumbnail.admin import AdminImageMixin
 
@@ -17,21 +17,12 @@ class PostAdmin(admin.ModelAdmin):
                               'classes': ['collapse']})
     ]
     inlines = [CommentInline]
-    """
-    def save_related(self, request, form, formsets, change):
-        if not form.cleaned_data['categories']:
-            category, created = Type.objects.get_or_create(name="Other")
-            form.cleaned_data['type'] = [type]
-        form.save_m2m()
-        for formset in formsets:
-            self.save_formset(request, form, formset, change=change)
-    """
 
 
-# Display image in admin
 class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
-    # explicitly reference fields to be shown, note image_tag is read-only
-    # Open/collapsablei field sets
+    """Display image in admin"""
+    # Explicitly reference fields to be shown, note image_tag is read-only.
+    # The 'More images' are defined as open/collapsablei field sets
     fieldsets = (
         (None, {
             'fields': ('image', 'image_tag', 'title', 'legend', 'description',
@@ -56,6 +47,21 @@ class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
     readonly_fields = ('image_tag', 'img2_tag', 'img3_tag', 'img4_tag')
 
 
+class EventDateAdmin(AdminImageMixin, admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('century', 'decade', 'year', 'month', 'day', 'date')
+        }),
+        ('More images', {
+            'classes': ('collapse', 'open'),
+            'fields': ('duration_decade', 'duration_year', 'duration_month',
+                       'duration_day')
+        }),
+    )
+    readonly_fields = ('date',)
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(PostImage, PostImageAdmin)
+admin.site.register(EventDate, EventDateAdmin)

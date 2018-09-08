@@ -1,4 +1,6 @@
+import datetime
 import os
+import re
 
 # Implement tag
 from taggit.managers import TaggableManager
@@ -10,6 +12,7 @@ from django.db import models
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
+from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
@@ -143,6 +146,135 @@ class PostImage(models.Model):
         return self.title
 
 
+class EventDate(models.Model):
+
+    CENTURIES = (
+        (1700, '1700'),
+        (1800, '1800'),
+        (1900, '1900'),
+        (2000, '2000'),
+    )
+    DECADES = (
+        (10, '10'),
+        (20, '20'),
+        (30, '30'),
+        (40, '40'),
+        (50, '50'),
+        (60, '60'),
+        (70, '70'),
+        (80, '80'),
+        (90, '90'),
+    )
+    YEARS_IN_DECADE = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+    )
+
+    MONTHS_IN_YEAR = (
+        (1, 'Jan'),
+        (2, 'Feb'),
+        (3, 'Mar'),
+        (4, 'Apr'),
+        (5, 'May'),
+        (6, 'Jun'),
+        (7, 'Jul'),
+        (8, 'Aug'),
+        (9, 'Sept'),
+        (10, 'Oct'),
+        (11, 'Nov'),
+        (12, 'Dec'),
+    )
+
+    MONTHS = [(i, i) for i in range(1, 13)]
+
+    DAYS = [(i, i) for i in range(1, 32)]
+
+    century = models.IntegerField(choices=CENTURIES, default=2000)
+    decade = models.IntegerField(default=0, choices=DECADES, null=True,
+                                 blank=True)
+    year = models.IntegerField(default=0, choices=YEARS_IN_DECADE, null=True,
+                               blank=True)
+    month = models.IntegerField(default=1, choices=MONTHS_IN_YEAR, null=True,
+                                blank=True)
+    day = models.IntegerField(default=1, choices=DAYS, null=True, blank=True)
+
+    duration_decade = models.IntegerField(default=0, choices=DECADES,
+                                          null=True, blank=True)
+    duration_year = models.IntegerField(default=0, choices=YEARS_IN_DECADE,
+                                        null=True, blank=True)
+    duration_month = models.IntegerField(default=0, choices=MONTHS,
+                                         null=True, blank=True)
+    duration_day = models.IntegerField(default=0, choices=DAYS, null=True,
+                                       blank=True)
+
+    # date = models.CharField(max_length=10, null=True, blank=True)
+    date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Event Date"
+        verbose_name_plural = "Event Dates"
+
+    def compose_date(self):
+
+        if self.century is None:
+            self.century = 0
+        if self.decade is None:
+            self.decade = 0
+        if self.year is None:
+            self.year = 0
+
+        years = self.century + self.decade + self.year
+        event_datetime = datetime.datetime(year=years, month=self.month,
+                                           day=self.day)
+        return event_datetime
+
+    def clean(self):
+
+        if self.century is None:
+            self.century = 0
+        if self.decade is None:
+            self.decade = 0
+        if self.year is None:
+            self.year = 0
+        if self.month is None:
+            self.month = 0
+        if self.day is None:
+            self.day = 0
+
+        years = self.century + self.decade + self.year
+        event_datetime = datetime.datetime(year=years, month=self.month,
+                                           day=self.day)
+        now = datetime.datetime.today()
+        """
+        """
+        if event_datetime > now:
+            raise ValidationError(
+                "Input event date is later then now!  Input: {} --- Now: {}."
+                .format(str(event_datetime), str(now), str(years),
+                        str(self.century), str(self.decade),
+                        str(self.year)))
+
+    def save(self, *args, **kwargs):
+        """
+        Slugify title if slug field doesn't exist.
+        IMPORTANT: doesn't check to see if slug is a dupe!
+        """
+        self.date = self.compose_date()
+        super(EventDate, self).save(*args, **kwargs)
+
+    def __str__(self):
+        # Strip time
+        # 2018-09-05 00:00:00+00:00 ---> 2018-09-05
+        return re.sub(r'\s.*', '', str(self.date))
+
+
 class Post(models.Model):
     author = models.ForeignKey(
         'auth.User', on_delete=models.CASCADE)
@@ -161,6 +293,11 @@ class Post(models.Model):
     slug = models.SlugField(unique=True, null=True, blank=True)
 
     tags = TaggableManager()
+
+    # Set default to id=3 (20th century)
+    event_date = models.ForeignKey(EventDate, on_delete=models.CASCADE,
+                                   blank=True, null=True, default=3,
+                                   related_name='event_date')
 
     def publish(self):
         self.published_date = timezone.now()
