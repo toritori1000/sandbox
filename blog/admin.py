@@ -1,6 +1,8 @@
+from django import forms
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 from blog.models import Post, Comment, Category, PostImage, EventDate
-# from blog.models import Post, Comment, Category
+
 from sorl.thumbnail.admin import AdminImageMixin
 
 
@@ -12,7 +14,7 @@ class CommentInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['author', 'title', 'slug', 'text', 'image_set',
-                           'tags', 'categories']}),
+                           'tags', 'categories', 'event_date']}),
         ('Date Information', {'fields': ['published_date'],
                               'classes': ['collapse']})
     ]
@@ -47,7 +49,34 @@ class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
     readonly_fields = ('image_tag', 'img2_tag', 'img3_tag', 'img4_tag')
 
 
-class EventDateAdmin(AdminImageMixin, admin.ModelAdmin):
+class EventDateAdminForm(forms.ModelForm):
+    class Meta:
+        model = EventDate
+        # __all_ or a list of the fields that you want to include in your form
+        fields = '__all__'
+
+    # This is the solution for the following error.
+    # An "UNIQUE constraint failed: ..." error occurs related to unique fields.
+    # https: // code.djangoproject.com/ticket/12028
+    #
+    # Important! The function name 'clean_date' needs to match the variabl
+    # name 'date' in the function.
+    #
+    def clean_date(self):
+        date = self.cleaned_data.get('date')
+        if EventDate.objects.filter(date=date).exists():
+            raise forms.ValidationError("This date value already exist.")
+
+    """
+    def clean_fields(self):
+        if 1 == 1:
+            raise ValidationError("VVVVQQQ")
+    """
+
+
+class EventDateAdmin(admin.ModelAdmin):
+    form = EventDateAdminForm
+
     fieldsets = (
         (None, {
             'fields': ('century', 'decade', 'year', 'month', 'day', 'date')

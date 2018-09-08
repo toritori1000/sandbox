@@ -213,32 +213,18 @@ class EventDate(models.Model):
                                          null=True, blank=True)
     duration_day = models.IntegerField(default=0, choices=DAYS, null=True,
                                        blank=True)
-
-    # date = models.CharField(max_length=10, null=True, blank=True)
     date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         verbose_name = "Event Date"
         verbose_name_plural = "Event Dates"
+        # Known django bug: https: // code.djangoproject.com/ticket/12028
+        # An "UNIQUE constraint failed: ..." error occurs if the combination.
+        # already exists in database.
+        # https://stackoverflow.com/questions/49531470/django-admin-inline-duplicate-key-value-violates-unique-constraint
+        unique_together = ('century', 'decade', 'year', 'month', 'day')
 
-    def compose_date(self):
-
-        if self.century is None:
-            self.century = 0
-        if self.decade is None:
-            self.decade = 0
-        if self.year is None:
-            self.year = 0
-
-        years = self.century + self.decade + self.year
-        event_datetime = datetime.datetime(year=years, month=self.month,
-                                           day=self.day)
-        return event_datetime
-
-    def clean(self):
-
-        if self.century is None:
-            self.century = 0
+    def none_to_zero(self):
         if self.decade is None:
             self.decade = 0
         if self.year is None:
@@ -248,12 +234,21 @@ class EventDate(models.Model):
         if self.day is None:
             self.day = 0
 
+    def compose_date(self):
+        self.none_to_zero()
         years = self.century + self.decade + self.year
         event_datetime = datetime.datetime(year=years, month=self.month,
                                            day=self.day)
+        return event_datetime
+
+    def clean(self):
+        self.none_to_zero()
+
+        years = int(self.century) + int(self.decade) + int(self.year)
+        event_datetime = datetime.datetime(year=years, month=self.month,
+                                           day=self.day)
         now = datetime.datetime.today()
-        """
-        """
+
         if event_datetime > now:
             raise ValidationError(
                 "Input event date is later then now!  Input: {} --- Now: {}."
@@ -261,11 +256,14 @@ class EventDate(models.Model):
                         str(self.century), str(self.decade),
                         str(self.year)))
 
+    def get_db_prep_value(self, value, connection, prepared=False):
+        value = models.Field.get_db_prep_value(
+            self, value, connection, prepared)
+        if value is not None:
+            return connection.Database.Binary(self._dump(value))
+        return value
+
     def save(self, *args, **kwargs):
-        """
-        Slugify title if slug field doesn't exist.
-        IMPORTANT: doesn't check to see if slug is a dupe!
-        """
         self.date = self.compose_date()
         super(EventDate, self).save(*args, **kwargs)
 

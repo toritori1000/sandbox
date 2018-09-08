@@ -83,8 +83,6 @@ def post_page(request, post_slug):
     tags = Tag.objects.all()
 
     image_obj = get_object_or_404(PostImage, id=post.image_set_id)
-    #image_obj = get_object_or_404(PostImage, id=1)
-    #image_obj_2 = get_object_or_404(PostImage, id=2)
 
     test = "WWWQQQ"
     test = post.image_set_id
