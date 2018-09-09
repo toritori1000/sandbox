@@ -13,13 +13,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9">
-            <h2>{{ post.title }}</h2>
+        <div class="col-md-9 post-col">
             <!-- 
             <p>Contributed by: {{ post.author }}</p>
             -->
-
             <div class="post">
+                <p class=post-title>{{ post.title }}</p>
                 <p>{{ post.text }}</p>
             </div>
 
@@ -32,9 +31,12 @@
             </p>
         </br>
 
+
             {% thumbnail image_obj.img2 "x300" as im %} 
-            <!-- Wrap text around with align right. -->
+            <!-- Wrap text around with align right. 
                 <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
+            -->
+                <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
             {%endthumbnail%} 
         
             <p>
@@ -42,6 +44,9 @@
                 {{ image_obj.img2_description}}
             </p>
             
+            <p>
+                AAAA333
+            </p>
 
 
 

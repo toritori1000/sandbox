@@ -99,6 +99,10 @@ span {
     border: 5px solid #333;
     overflow: auto
 }
+.post-col {
+    font-size: 14px;
+    padding: 5px 40px 5px 10px;
+}
 .post-thumb {
     float: left
 }
@@ -141,3 +145,4 @@ span {
       font-size: 24px;
       font-family: 'Raleway',sans-serif;
 }
+
