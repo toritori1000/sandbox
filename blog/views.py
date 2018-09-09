@@ -1,6 +1,8 @@
+import datetime
 from functools import reduce
 import operator
 import os
+import re
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -11,13 +13,14 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from django.db.models.query import prefetch_related_objects
 from django.db.models import Q
-from blog.models import Post, Comment, Category, PostImage
+from blog.models import Post, Comment, Category, PostImage, EventDate
 from taggit.models import Tag
 
 import pprint
 
 
-def index(request, tag_slug=None, cat_slug=None):
+def index(request, tag_slug=None, cat_slug=None, arch_date=None,
+          event_year=None):
     posts = Post.objects.all()
     context = {}
 
@@ -32,14 +35,43 @@ def index(request, tag_slug=None, cat_slug=None):
         posts = posts.filter(id__in=cat_ids)
         context['cat'] = cat_ids
 
+    if arch_date:
+        ym = arch_date.split("-")
+        posts = Post.objects.filter(created_date__year=ym[0],
+                                    created_date__month=ym[1])
+
+    """
+    if event_date:
+        posts = Post.objects.filter(created_date__year='2016',
+                                    created_date__month='01')
+    """
+    #
+    # For sidebar
+    #
     # Not to use tags = Tag.objects.all() to get only tags that has Post assoc
     tags = Post.tags.all()
     post_items = get_post_items(posts)
     context['posts'] = post_items
 
-    # For sideba
     context['tags'] = tags
     context['categories'] = Category.objects.all()
+    # Archive by year-month
+    qs = Post.objects.extra(select={
+        'year': "strftime('%%Y',created_date)",
+        'month': "strftime('%Y-%m', created_date)", }).values(
+        'year', 'month')
+    # Get distinct year-month set
+    ym_set = []
+    test = ''
+    for item in qs:
+        ym_set.append(item['month'])
+    context['post_year_month_set'] = list(set(ym_set))
+
+    context['my_test'] = "QQQQ"
+
+    # Event by year-century
+    qs = EventDate.objects.all()
+    context['events'] = qs
 
     # Build absolute url such as below for side-pan category link.
     # http://localhost:8000/blog/tag/
@@ -52,6 +84,10 @@ def index(request, tag_slug=None, cat_slug=None):
         reverse('index')), 'tag/')
     context['cat_base_url'] = os.path.join(request.build_absolute_uri(
         reverse('index')), 'cat/')
+    context['arch_base_url'] = os.path.join(request.build_absolute_uri(
+        reverse('index')), 'arch/')
+    context['event_base_url'] = os.path.join(request.build_absolute_uri(
+        reverse('index')), 'event/')
 
     context['test'] = os.path.join(request.build_absolute_uri(
         reverse('index')), 'cat/')

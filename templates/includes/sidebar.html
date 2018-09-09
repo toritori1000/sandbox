@@ -40,35 +40,31 @@
     <div class="card my-3">
         <h5 class="card-header">Archive</h5>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#">Insulin</a>
-                        </li>
-                        <li>
-                            <a href="#">Polio</a>
-                        </li>
-                        <li>
-                            <a href="#">Black death</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#">Quinine</a>
-                        </li>
-                        <li>
-                            <a href="#">X-ray</a>
-                        </li>
-                        <li>
-                            <a href="#">Hand wash</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+            {% for year_month in post_year_month_set %}
+                <a href="{{ arch_base_url }}{{ year_month }}" class="btn btn-sm custom-arch" role="button">
+                    {{ year_month }}
+                </a>
+            {% endfor %}
+                            
         </div>
     </div>
+
+    <!-- Events by Decate --> 
+    <div class="card my-3">
+        <h5 class="card-header">Events by Year</h5>
+        <div class="card-body">
+
+            {% for event in events %}
+                <a href="{{ event_base_url }}{{ event.decade_by_five }}" class="btn btn-sm custom-event" role="button">
+                    {{ event.decade_by_five }}
+
+                </a>
+            {%endfor%}
+
+                            
+        </div>
+    </div>
+
 
 </div>

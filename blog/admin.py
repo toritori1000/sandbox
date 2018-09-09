@@ -14,10 +14,12 @@ class CommentInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['author', 'title', 'slug', 'text', 'image_set',
-                           'tags', 'categories', 'event_date']}),
-        ('Date Information', {'fields': ['published_date'],
+                           'tags', 'categories']}),
+        ('Date Information', {'fields': ['published_date', 'created_date',
+                                         'event_date'],
                               'classes': ['collapse']})
     ]
+    readonly_fields = ('created_date', 'event_date')
     inlines = [CommentInline]
 
 
@@ -79,7 +81,9 @@ class EventDateAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('century', 'decade', 'year', 'month', 'day', 'date')
+            'fields': ('century', 'decade', 'year', 'month', 'day', 'date',
+                       'decade_by_five'
+                       )
         }),
         ('More images', {
             'classes': ('collapse', 'open'),

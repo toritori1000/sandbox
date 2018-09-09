@@ -214,6 +214,7 @@ class EventDate(models.Model):
     duration_day = models.IntegerField(default=0, choices=DAYS, null=True,
                                        blank=True)
     date = models.DateTimeField(blank=True, null=True)
+    decade_by_five = models.CharField(max_length=10, null=True, blank=True)
 
     class Meta:
         verbose_name = "Event Date"
@@ -237,9 +238,14 @@ class EventDate(models.Model):
     def compose_date(self):
         self.none_to_zero()
         years = self.century + self.decade + self.year
+
+        # Format 2012-11-11 00:00:00
         event_datetime = datetime.datetime(year=years, month=self.month,
                                            day=self.day)
-        return event_datetime
+        # Format 1876 ---> 1850-1899
+        decade_by_five = "{}-{}".format(str(years - years % 50),
+                                        str(years - years % 50 + 49))
+        return [event_datetime, decade_by_five]
 
     def clean(self):
         self.none_to_zero()
@@ -264,7 +270,9 @@ class EventDate(models.Model):
         return value
 
     def save(self, *args, **kwargs):
-        self.date = self.compose_date()
+        self.date = self.compose_date()[0]
+
+        self.decade_by_five = self.compose_date()[1]
         super(EventDate, self).save(*args, **kwargs)
 
     def __str__(self):
