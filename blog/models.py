@@ -220,7 +220,8 @@ class EventDate(models.Model):
         verbose_name = "Event Date"
         verbose_name_plural = "Event Dates"
         #
-        # Note: need a 'clean_date' check in admin.py to deal with the error below.
+        # Note: need a 'clean_date' check in admin.py to deal with the error
+        # below.
         # "UNIQUE constraint failed: ..."
         #
         unique_together = ('century', 'decade', 'year', 'month', 'day')
@@ -286,6 +287,7 @@ class Post(models.Model):
         'auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
+    keywords = models.CharField(max_length=1000)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 

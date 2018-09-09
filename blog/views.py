@@ -85,15 +85,13 @@ def post_page(request,
                                                      arch_date, event_year)
         posts = posts_context_dic['posts']
         context = posts_context_dic['context']
-        #context['tags'] = tags
-        #context['categories'] = Category.objects.all()
-        #context['test'] = test
 
         return render(request, 'blog/post_page.html', context)
 
 
 def generate_sidebar_context(request, context,
-                             tag_slug, cat_slug, arch_date, event_year):
+                             tag_slug=None, cat_slug=None, arch_date=None,
+                             event_year=None):
     """Utility function that handels sidebar context."""
 
     posts = Post.objects.all()
@@ -186,8 +184,7 @@ def generate_sidebar_context(request, context,
 
 
 def get_post_items(posts):
-    """Utility function. Builds a list of display items given a list of
-    post objects."""
+    """Utility function. Define display items for posts."""
 
     post_items = []
     for post in posts:
@@ -195,6 +192,7 @@ def get_post_items(posts):
         post_item = {
             'title': post.title,
             'text': post.text,
+            'keywords': post.keywords,
             'url': post_url,
             # many-to-many field
             'categories': post.categories.all(),
@@ -222,11 +220,52 @@ def search(request):
         # to achieve the SQL query similar to the following.
         # SELECT * FROM blog_table WHERE content LIKE '%first_word%'
         # AND content LIKE '%second_word%' AND content LIKE '%third_word%'
+
+        # Append new reduce() for search fields
         results = posts.filter(
             reduce(operator.and_,
                    (Q(title__icontains=q) for q in query_tokens)) |
             reduce(operator.and_,
-                   (Q(text__icontains=q) for q in query_tokens))
+                   (Q(text__icontains=q) for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(tags__name__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__title__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__description__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__legend__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__img2_title__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__img2_description__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__legend2__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__img3_title__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__img3_description__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__legend3__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__img4_title__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__img4_description__icontains=q)
+                    for q in query_tokens)) |
+            reduce(operator.and_,
+                   (Q(image_set__legend4__icontains=q)
+                    for q in query_tokens))
         )
 
         post_items = get_post_items(results)
@@ -237,6 +276,12 @@ def search(request):
         'posts': post_items,
         'query': query
     }
+
+    ##################
+    # For sidebar
+    ##################
+    posts_context_dic = generate_sidebar_context(request, context)
+    posts = posts_context_dic['posts']
+    context = posts_context_dic['context']
+
     return render(request, 'blog/index.html', context)
-    # test = context['posts']
-    # return HttpResponse(test)

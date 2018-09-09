@@ -80,6 +80,7 @@ span {
     border-style: solid; 
     padding: 3px; 
     margin: 5px 20px 5px 2px; 
+    float: left;    
 } 
 
 .blog-img-right { 
@@ -89,6 +90,11 @@ span {
     padding: 3px; 
     margin: 5px 2px 5px 20px; 
 } 
+
+div.clear-float {
+    clear: left; 
+    margin: 20px;
+}
 
 .side-bar {
     background-color: #f9fbfc; 
@@ -103,10 +109,10 @@ span {
     font-size: 14px;
     padding: 5px 40px 5px 10px;
 }
-.post-thumb {
+.xpost-thumb {
     float: left
 }
-.post-thumb img {
+.xpost-thumb img {
     display: block
 }
 .post-content {
@@ -140,9 +146,16 @@ span {
   opacity: 0.8;
 }
 
-
- .img-title {
-      font-size: 24px;
-      font-family: 'Raleway',sans-serif;
+.img-title {
+    font-size: 24px;
+    font-family: 'Raleway',sans-serif;
 }
 
+.post-page-img {
+    font-size: 14px;
+    color: black;
+    color: white;
+    min-height: 320px; /* im.height + 20px */ 
+    padding: 5px 5px 5px 10px;
+    background-color: #4b2b3e; 
+}
