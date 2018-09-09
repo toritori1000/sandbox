@@ -303,7 +303,7 @@ class Post(models.Model):
     # Set default to id=3 (20th century)
     event_date = models.ForeignKey(EventDate, on_delete=models.CASCADE,
                                    blank=True, null=True, default=3,
-                                   related_name='event_date')
+                                   related_name='post_event_date_set')
 
     def publish(self):
         self.published_date = timezone.now()

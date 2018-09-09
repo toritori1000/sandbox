@@ -36,7 +36,7 @@
     </div>
     <!-- end: Tags widget -->
 
-    <!-- Side Widget -->
+    <!-- Archive Widget -->
     <div class="card my-3">
         <h5 class="card-header">Archive</h5>
         <div class="card-body">
@@ -55,9 +55,9 @@
         <h5 class="card-header">Events by Year</h5>
         <div class="card-body">
 
-            {% for event in events %}
-                <a href="{{ event_base_url }}{{ event.decade_by_five }}" class="btn btn-sm custom-event" role="button">
-                    {{ event.decade_by_five }}
+            {% for decade_by_five in events %}
+                <a href="{{ event_base_url }}{{ decade_by_five }}" class="btn btn-sm custom-event" role="button">
+                    {{ decade_by_five }}
 
                 </a>
             {%endfor%}

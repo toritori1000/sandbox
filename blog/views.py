@@ -40,11 +40,12 @@ def index(request, tag_slug=None, cat_slug=None, arch_date=None,
         posts = Post.objects.filter(created_date__year=ym[0],
                                     created_date__month=ym[1])
 
-    """
-    if event_date:
-        posts = Post.objects.filter(created_date__year='2016',
-                                    created_date__month='01')
-    """
+    if event_year:
+        event_ids = EventDate.objects.filter(
+            decade_by_five=event_year).values_list('id', flat=True)
+        posts = posts.filter(event_date_id__in=event_ids)
+        test = posts
+        context['event'] = event_ids
     #
     # For sidebar
     #
@@ -60,18 +61,32 @@ def index(request, tag_slug=None, cat_slug=None, arch_date=None,
         'year': "strftime('%%Y',created_date)",
         'month': "strftime('%Y-%m', created_date)", }).values(
         'year', 'month')
-    # Get distinct year-month set
+    # Get distinct year-month in the set
     ym_set = []
-    test = ''
     for item in qs:
         ym_set.append(item['month'])
     context['post_year_month_set'] = list(set(ym_set))
 
-    context['my_test'] = "QQQQ"
-
     # Event by year-century
-    qs = EventDate.objects.all()
-    context['events'] = qs
+    #qs = EventDate.objects.all()
+    # Get EventDate exclude those not asociate with any post.
+    # A.objects.exclude(b__isnull=True).distinct()
+    #qs = EventDate.objects.exclude(post__isnull=False).distinct()
+    #qs = EventDate.objects.all().prefetch_related('post_set')
+    qs = EventDate.objects.prefetch_related(
+        'post_event_date_set').all()  # Reverse ForeignKey relationship
+    # Get distinct decade_by_five in the set
+    decade_set = []
+    post_event_ids = Post.objects.all().values_list('event_date_id', flat=True)
+    for item in qs:
+        # Include only the ones associated post
+        if item.id in post_event_ids:
+            decade_set.append(item.decade_by_five)
+    # Keep only unique values
+    context['events'] = list(set(decade_set))
+
+    # context['events'] = qs
+    # context['my_test'] = test
 
     # Build absolute url such as below for side-pan category link.
     # http://localhost:8000/blog/tag/
@@ -108,6 +123,7 @@ def get_post_items(posts):
             'categories': post.categories.all(),
             # foreign-key field
             'image_set': post.image_set,
+            'event_date': post.event_date,
         }
         post_items.append(post_item)
 
