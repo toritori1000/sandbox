@@ -1,41 +1,72 @@
-{% extends "blog/base.html" %}
-{% load static %}
+{% extends "blog/base.html" %} 
+{% load static %} 
+{% load thumbnail %} 
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8" style="padding-top: 5em;">
-            <h1>{{ post.title }}</h1>
-            <p>Author: {{ post.author }}</p>
 
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Top empty space -->
+            </br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 post-col">
+            <!-- 
+            <p>Contributed by: {{ post.author }}</p>
+            -->
             <div class="post">
+                <p class=post-title>{{ post.title }}</p>
                 <p>{{ post.text }}</p>
             </div>
 
-            <p style="font-size: 14px;">
-                Tags:
-                {% for tag in post.tags.all %}
-                    <a href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
-                    {% if not forloop.last %}, {% endif %}
-                {% endfor %}
+            <!-- Image: Fixed height; Wrap text around with align left. -->
+            {% thumbnail image_obj.image "x300" as im %} 
+                <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
+            {%endthumbnail%} 
+            <p>
+                {{ image_obj.description}}
+            </p>
+        </br>
+
+
+            {% thumbnail image_obj.img2 "x300" as im %} 
+            <!-- Wrap text around with align right. 
+                <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
+            -->
+                <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
+            {%endthumbnail%} 
+        
+            <p>
+                AAA222
+                {{ image_obj.img2_description}}
+            </p>
+            
+            <p>
+                AAAA333
             </p>
 
+
+
+            <p style="font-size: 14px;">
+                Tags: {% for tag in post.tags.all %}
+                <a href="{% url 'post_by_tag' tag.slug %}">{{ tag.name }}</a>
+                {% if not forloop.last %}, {% endif %} {% endfor %}
+            </p>
+
+            <!--
             <h4>Comment:</h4>
             <form method="POST" action="">{% csrf_token %}
                 <textarea name="comment" cols="50" rows="3" autocomplete="off"></textarea><br>
                 <input class="btn btn-primary" type="submit" value="Submit">
             </form>
+            -->
         </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-md-8" >
-            {% for comment in comments %}
-                {% if comment.item.title == post.title %}
-                    <p>{{ comment.text }}</p>
-                {% endif %}
-            {% endfor %}
-        </div>
+        <!-- Sidebar -->
+        {% include "includes/sidebar.html" %}
     </div>
 </div>
+
 {% endblock %}

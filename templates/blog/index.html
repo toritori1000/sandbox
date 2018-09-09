@@ -1,5 +1,8 @@
-{% extends "blog/base.html" %}
-{% load static %}
+{% extends "blog/base.html" %} 
+{% load static %} 
+{% load thumbnail %} 
+{% load split_list %} 
+
 
 {% block content %}
 
@@ -7,106 +10,57 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Bootstrap 4</h1>
+                <h1>Bootstrap 4 (from index.html)</h1>
                 <p>This is some text</p>
                 <p>This is some text</p>
                 <p>This is some text</p>
-                <a  href="#" class="btn btn-primary btn-lg">More...</a>
+                <a href="#" class="btn btn-primary btn-lg">More...</a>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="container">
-
-    <div class="row">
-        <div class="col-md-9">
-            {% if tag %}
-                <h3>Posts tagged with "{{ tag.name }}"</h3>
-            {% endif %}
-        </div>
-    </div>
     <div class="row top-buffer">
-        <div class="col-md-9 col-lg-9">
-            <div class="row">
-                {% for post in posts %}
-                <div class="col-md-3 col-lg-3 img-box">
-                    <img class="img-fluid" src="{% static 'images/firstxray.png' %}" alt="Sample photo">
-                    <h3>{{ post.title }}</h3>
-                    <span>{{ post.text }}</span>
-                    <a href="{{ post.url }}" class="btn btn-default btn-lg">More...</a>
-                </div>
+        
+        <div class="col-sm-9 col-md-9 col-lg-9">
 
-                {% endfor %}
-            </div>
-        </div>
+            <!-- Display 3 image per row using 'columns' filter -->
+            {% for row in posts|columns:3 %}
+                <div class="row row-no-padding">
+                    {% for post in row %}
+                        <div class="col-sm-6 col-md-4 col-lg-4 img-col">
+                            <!-- Image: size determins spacing between columns. -->
+                            {% thumbnail post.image_set.image "210x210" crop="center" as im %}
+                            </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-left" />{% endthumbnail %}
+                            <p>
+                                <span class="img-title">{{ post.title }}</span>
+                            </p>
+                            <p>
+                                {{ post.text|truncatewords:25 }}
+                                <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
+                               
+                                MMMM
+                                {{ post.event_date }}
+                                FFFF
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-3 col-lg-3">
+                            </p>
 
-            <!-- Categories Widget -->
-            <div class="card my-3">
-                <h5 class="card-header">Categories</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
-                            </ul>
+
+
+                            <!--
+                            <img src="{{post.image_set.image.url}}" height="220px" width="220px" class="xblog-img-left"/>
+                            -->
                         </div>
-                        <div class="col-md-6">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end: Categories widget -->
-
-
-            <!-- Tags Widget -->
-            <div class="card">
-                <h5 class="card-header">Tags</h5>
-                <div class="card-body">
-                    {% for tag in tags %}
-                    <a href="#link" class="btn btn-sm custom-tag" role="button">
-                        <i class="fa fa-tag"></i>{{ tag.slug }}
-                    </a>
                     {% endfor %}
                 </div>
-            </div>
-            <!-- end: Tags widget -->
-
-            <!-- Side Widget -->
-            <div class="card my-3">
-                <h5 class="card-header">Side Widget</h5>
-                <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
-        <!-- col-md-3 -->
 
+        <!-- Sidebar col-md-3 -->
+        {% include "includes/sidebar.html" %}
     </div>
-</div>
 </div>
 
 {% endblock %}

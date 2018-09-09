@@ -1,6 +1,9 @@
 body {
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-top: 0;
     padding-bottom: 0;
+    /*color: #7c7c7c;*/
+    background-color: #ECECEA;
 }
 
 .top-buffer {
@@ -20,7 +23,7 @@ span {
 }
 
 .post {
-   font-size: 19px;
+   font-size: 16px;
 }
 
 .img-fluid {
@@ -35,15 +38,111 @@ span {
 
 }
 
+.img-thumnail {
+    float: left; 
+}
+.img-text {
+    color: red;
+    float: right; 
+}
+
 .custom-tag {
     color: tomato;
     /* wrap button text */
-   white-space:normal !important;
+    white-space:normal !important;
     word-wrap: break-word;
     border: 1px solid white;
 }
 
-.custom-tag:hover {
+.custom-cat {
+    color: #009900;
+    /* wrap button text */
+    white-space:normal !important;
+    word-wrap: break-word;
+    border: 1px solid white;
+}
+
+.custom-arch {
+    font-size: 13px;
+}
+
+.custom-event {
+    font-size: 13px;
+}
+
+.custom-tag:hover, .custom-cat:hover {
     background-color: #D4E6F1;
+}
+
+.blog-img-left { 
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 5px 20px 5px 2px; 
+} 
+
+.blog-img-right { 
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 5px 2px 5px 20px; 
+} 
+
+.side-bar {
+    background-color: #f9fbfc; 
+}
+
+.post-container {
+    margin: 20px 20px 0 0;  
+    border: 5px solid #333;
+    overflow: auto
+}
+.post-col {
+    font-size: 14px;
+    padding: 5px 40px 5px 10px;
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block
+}
+.post-content {
+    margin-left: 210px
+}
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
+.img-col {
+    font-size: 14px;
+    color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 5px 5px 10px;
+    background-color: #306754;
+    background-color: #7F462C; 
+    background-color: #0C090A; 
+    background-color: #141517;
+    background-color: #1E1F21;
+    background-color: #323335; 
+    background-color: #6799A3; 
+    background-color: #1f5846; 
+    background-color: #393d40; 
+    background-color: #371729; 
+    background-color: #5e4553; 
+    background-color: #4b2b3e; 
+}
+
+.img-col:hover {
+  opacity: 0.8;
+}
+
+
+ .img-title {
+      font-size: 24px;
+      font-family: 'Raleway',sans-serif;
 }
 

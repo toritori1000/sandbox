@@ -1,0 +1,70 @@
+<!-- Sidebar Widgets Column -->
+<div class="col-md-3 col-lg-3 side-bar">
+
+    <!-- Categories Widget -->
+    <div class="card my-3">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+            {% for category in categories %}
+            <tag class="slug"></tag>
+            <a href="{{ cat_base_url }}{{ category.slug }}" class="btn btn-sm custom-cat" role="button">
+                {{ category.title }}
+            </a>
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+    <!-- end: Categories widget -->
+
+
+    <!-- Tags Widget -->
+    <div class="card">
+        <h5 class="card-header">Tags</h5>
+        <div class="card-body">
+            {% for tag in tags %}
+            <tag class="slug"></tag>
+            <!-- 
+                    <a href="{{request.get_host}}/{{tag.slug}}" class="btn btn-sm custom-tag" role="button">
+                    -->
+            <a href="{{ tag_base_url }}{{ tag.slug }}" class="btn btn-sm custom-tag" role="button">
+                <i class="fa fa-tag"></i>&nbsp;{{ tag.slug }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- end: Tags widget -->
+
+    <!-- Archive Widget -->
+    <div class="card my-3">
+        <h5 class="card-header">Archive</h5>
+        <div class="card-body">
+
+            {% for year_month in post_year_month_set %}
+                <a href="{{ arch_base_url }}{{ year_month }}" class="btn btn-sm custom-arch" role="button">
+                    {{ year_month }}
+                </a>
+            {% endfor %}
+                            
+        </div>
+    </div>
+
+    <!-- Events by Decate --> 
+    <div class="card my-3">
+        <h5 class="card-header">Events by Year</h5>
+        <div class="card-body">
+
+            {% for decade_by_five in events %}
+                <a href="{{ event_base_url }}{{ decade_by_five }}" class="btn btn-sm custom-event" role="button">
+                    {{ decade_by_five }}
+
+                </a>
+            {%endfor%}
+
+                            
+        </div>
+    </div>
+
+
+</div>
