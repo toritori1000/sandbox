@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib import admin
 from django.core.exceptions import ValidationError
-from blog.models import Post, Comment, Category, PostImage, EventDate
+from blog.models import Post, Comment, Category, PostImage, EventDate, HomePost
+# from blog.models import Post, Comment, Category, PostImage, EventDate
 
 from sorl.thumbnail.admin import AdminImageMixin
 
@@ -20,6 +21,38 @@ class PostAdmin(admin.ModelAdmin):
     ]
     readonly_fields = ('created_date',)
     inlines = [CommentInline]
+
+
+class HomePostForm(forms.ModelForm):
+
+    class Meta:
+        model = HomePost
+        fields = '__all__'
+
+    def clean(self):
+        """
+        Raise error if any feature_posts (many-to-many field) values the same
+        as title_post.
+        """
+        title_post = self.cleaned_data.get('title_post')
+        feature_posts = self.cleaned_data.get('feature_posts')
+        for feature_post in feature_posts:
+            if feature_post == title_post:
+                raise ValidationError(
+                    "The feature post needs to be different from "
+                    "the selected title post: '{}'.".format(title_post))
+
+
+class HomePostAdmin(admin.ModelAdmin):
+    form = HomePostForm
+
+    fieldsets = [
+        (None, {'fields': ['title', 'caption', 'description', 'alt_text',
+                           'title_post', 'feature_posts']}),
+        ('Date Information', {'fields': ['published_date', 'created_date'],
+                              'classes': ['collapse']})
+    ]
+    readonly_fields = ('created_date',)
 
 
 class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
@@ -97,3 +130,4 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
 admin.site.register(PostImage, PostImageAdmin)
 admin.site.register(EventDate, EventDateAdmin)
+admin.site.register(HomePost, HomePostAdmin)

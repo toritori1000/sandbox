@@ -142,6 +142,10 @@ class PostImage(models.Model):
         )
     img4_tag.short_description = 'Second Image'
 
+    class Meta:
+        verbose_name = "Post Image"
+        verbose_name_plural = "Post Images"
+
     def __str__(self):
         return self.title
 
@@ -263,13 +267,6 @@ class EventDate(models.Model):
                         str(self.century), str(self.decade),
                         str(self.year)))
 
-    def get_db_prep_value(self, value, connection, prepared=False):
-        value = models.Field.get_db_prep_value(
-            self, value, connection, prepared)
-        if value is not None:
-            return connection.Database.Binary(self._dump(value))
-        return value
-
     def save(self, *args, **kwargs):
         self.date = self.compose_date()[0]
 
@@ -323,6 +320,39 @@ class Post(models.Model):
         """
         self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+
+class HomePost(models.Model):
+    title = models.CharField(max_length=200)
+    caption = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    alt_text = models.TextField(blank=True, null=True)
+    title_post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                                   related_name='title_post')
+    # Note: feature_posts should not be the same as title_post
+    # See the admin form validation in admin.py.
+    feature_posts = models.ManyToManyField(Post, default=1,
+                                           related_name='feature_posts')
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    slug = models.SlugField(unique=True, null=True, blank=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    class Meta:
+        verbose_name = "Home Post"
+        verbose_name_plural = "Home Posts"
+        ordering = ['created_date']
+
+    def save(self, *args, **kwargs):
+        self.slug = "{}_{}".format('homepost_', slugify(self.title))
+        super(HomePost, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

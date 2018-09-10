@@ -34,8 +34,19 @@
             {% endfor %}
         </div>
     </div>
-    <!-- end: Tags widget -->
+    <!-- Events by Decate --> 
+    <div class="card my-3">
+        <h5 class="card-header">Event Years</h5>
+        <div class="card-body">
 
+            {% for decade_by_five in events %}
+                <a href="{{ event_base_url }}{{ decade_by_five }}" class="btn btn-sm custom-event" role="button">
+                    {{ decade_by_five }}
+
+                </a>
+            {%endfor%}
+        </div>
+    </div>
     <!-- Archive Widget -->
     <div class="card my-3">
         <h5 class="card-header">Archive</h5>
@@ -50,21 +61,7 @@
         </div>
     </div>
 
-    <!-- Events by Decate --> 
-    <div class="card my-3">
-        <h5 class="card-header">Events by Year</h5>
-        <div class="card-body">
-
-            {% for decade_by_five in events %}
-                <a href="{{ event_base_url }}{{ decade_by_five }}" class="btn btn-sm custom-event" role="button">
-                    {{ decade_by_five }}
-
-                </a>
-            {%endfor%}
-
-                            
-        </div>
-    </div>
+    <!-- end: Tags widget -->
 
 
 </div>
