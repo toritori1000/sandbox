@@ -47,12 +47,19 @@ class HomePostAdmin(admin.ModelAdmin):
     form = HomePostForm
 
     fieldsets = [
-        (None, {'fields': ['title', 'caption', 'description', 'alt_text',
-                           'title_post', 'feature_posts']}),
+        (None, {'fields': ['current', 'title', 'caption', 'description',
+                           'alt_text', 'header_post', 'feature_posts']}),
         ('Date Information', {'fields': ['published_date', 'created_date'],
                               'classes': ['collapse']})
     ]
     readonly_fields = ('created_date',)
+
+    def save_model(self, request, obj, form, change):
+        # Reset 'current' field values of all other rows to 0
+        for item in HomePost.objects.all():
+            item.current = 0
+            item.save()
+        obj.save()
 
 
 class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):

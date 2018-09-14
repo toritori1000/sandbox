@@ -2,6 +2,7 @@ import datetime
 from functools import reduce
 import operator
 import os
+import pprint
 import re
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -13,10 +14,31 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from django.db.models.query import prefetch_related_objects
 from django.db.models import Q
-from blog.models import Post, Comment, Category, PostImage, EventDate
+from blog.models import Post, Comment, Category, PostImage, EventDate, HomePost
 from taggit.models import Tag
 
-import pprint
+
+def home(request):
+
+    # Get home posts
+    home_post = HomePost.objects.filter(current=1)
+
+    header_post_id = home_post[0].header_post_id
+    header_post = Post.objects.filter(id=header_post_id)
+    feature_posts = home_post[0].feature_posts.all()
+
+    context = {
+        'home_post': home_post[0],
+        'header_post': header_post[0],
+        'feature_posts': feature_posts,
+    }
+
+    #test = home_post[0].slug
+    #test = "QQQQ"
+    #test = title_post[0]
+
+    # return HttpResponse(test)
+    return render(request, 'blog/home.html', context)
 
 
 def index(request,

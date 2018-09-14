@@ -158,6 +158,7 @@ class EventDate(models.Model):
         (1900, '1900'),
         (2000, '2000'),
     )
+
     DECADES = (
         (10, '10'),
         (20, '20'),
@@ -326,12 +327,18 @@ class Post(models.Model):
 
 
 class HomePost(models.Model):
+    CURRENT = (
+        (1, 'Yes'),
+        (0, 'No'),
+    )
+    current = models.IntegerField(choices=CURRENT, default=0)
     title = models.CharField(max_length=200)
     caption = models.CharField(max_length=1000, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     alt_text = models.TextField(blank=True, null=True)
-    title_post = models.ForeignKey(Post, on_delete=models.CASCADE,
-                                   related_name='title_post')
+    header_post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                                    related_name='header_post', null=True,
+                                    blank=True)
     # Note: feature_posts should not be the same as title_post
     # See the admin form validation in admin.py.
     feature_posts = models.ManyToManyField(Post, default=1,
@@ -355,7 +362,7 @@ class HomePost(models.Model):
         super(HomePost, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return "{} ({})".format(self.title, self.current)
 
 
 class Comment(models.Model):

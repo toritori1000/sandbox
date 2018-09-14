@@ -21,13 +21,18 @@
     <body>
     <!-- YOUR CONTENT STARTS HERE -->
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background: DarkSlateGray;">
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background: #4b2b3e;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- brand -->
-        <a class="navbar-brand" href="/blog">Blog</a>
+        <!-- Logo image and text -->
+        <IMG SRC="/media/images/blog/medsci_logo_v5_50x50.png" ALT="some text" class="logo"/>
+        <a class="navbar-brand" href="/blog">&nbsp;&nbspHome</a>
+
+        <!--
+        <IMG SRC="{% static 'images/blog/medsci_icon_64x64.png' %}" ALT="some text" WIDTH=60 HEIGHT=40>
+        -->
 
         <div class="collapse navbar-collapse" id="nav-content">
             <div class="container">
@@ -35,6 +40,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-4">
                         <ul class="navbar-nav">
+                            <li>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">link 1</a>
                             </li>
@@ -50,7 +57,7 @@
                     <div class="col-md-4 col-sm-2">
                         <form id="search-form" action="{% url 'search' %}" method="get" accept-charset="utf-8">
                             <div class="input-group">
-                                <input class="form-control bg-light order-secondary py-2" id="search-box" type="search"
+                                <input class="form-control order-secondary py-2" id="search-box" type="search"
                                        name="q" value="{{ query }}" placeholder="Search ...">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="submit">

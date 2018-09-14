@@ -159,3 +159,259 @@ div.clear-float {
     padding: 5px 5px 5px 10px;
     background-color: #4b2b3e; 
 }
+
+.title-img {
+  background-color: red;
+  width: auto !important; /*override the width below*/
+  width: 100%;
+  max-width: 100%;
+  float: left;
+  clear: both;
+}
+
+
+/* The hero image */
+.xhero-image {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/media/cache/77/04/7704597e2c2bd16f7f8bea9b19c67a40.jpg");*/
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/media/cache/77/04/7704597e2c2bd16f7f8bea9b19c67a40.jpgx");
+
+
+    /* Set a specific height */
+    height: 300px;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+/* Customize bootstrap navbar-brand */
+.navbar-brand:hover {
+    opacity: 0.8 !important;
+}
+.logo:hover {
+    color: #58B8EF  !important;
+    opacity: 0.8;
+}
+
+/* blend mode */
+.hero-wrapper {
+    position: relative;
+    width: 100%; 
+    height: 350px;
+    padding: 20px 0px 20px 100px;
+    background-color: #4b2b3e; 
+}
+.image-blend {
+    width: 50%; 
+    height: 300px;
+    background-color: grey;
+    /*
+     -webkit-mask: linear-gradient(90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
+     */
+     -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
+}
+
+
+
+.hero-text {
+    color: gold; 
+    color: #87CEFA;
+    color: red; 
+    color: yellow; 
+    color: #b20000; 
+    color: tomato; 
+    
+}
+
+#hero-text-left {
+    color: red; 
+}
+#hero-text-right {
+    color: #0099E6;
+}
+
+
+/* blend mode */
+.hero-container {
+    position: relative;
+    background-color: #4b2b3e; 
+}
+
+.hero-wrapper2 {
+    width: 100%
+}
+
+.hero-image {
+    width: 100%; 
+    height: 350px;
+    padding: 20px 0px 20px 100px;
+    background-color: #4b2b3e; 
+}
+
+.blend-left {
+    background-color: #4b2b3e; 
+    -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
+}
+.blend-right {
+    width: 100%; 
+    -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
+
+}
+.blend-img-right {
+    background-color: red;
+
+    -webkit-filter: grayscale(100%);filter: grayscale(100%);
+        opacity: 0.5;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+
+/* Place text in the middle of the image */
+.hero-text2 {
+    text-align: center;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /*hide to front */
+}
+
+
+
+
+
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+
+    background-color: black; 
+    
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/media/cache/77/04/7704597e2c2bd16f7f8bea9b19c67a40.jpgx");*/
+
+    /* Add effect: Grey image with opacity reduced */
+    -webkit-filter: grayscale(100%);filter: grayscale(100%);
+        opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+
+}
+
+
+.xheader-img {
+    border-width: 1px; 
+    border-color: lightgrey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 5px 20px 5px 2px; 
+
+    /* Create frame like image border */
+    background-color: lightgrey; 
+    padding: 1em; 
+    box-shadow: inset 0 0 1em 1em lightgrey; 
+}
+
+
+.xbottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+.xtop-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+.xtop-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+.xbottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+.xcentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ximage-div{
+  float:left;
+  margin-right:10px;
+  max-width: 20%;
+  max-height: 20%;
+
+}
+
+
+/* global search box */
+#search-box{
+    color: lightgrey;
+    background-color: #432637;
+}
+
+
+
+
+
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.gallery {
+  width: 25%;
+  padding: 0vw;
+  margin: 3%;
+  border-radius: 5vw;
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+    right: 0;
+  height: 95%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: blueviolet;
+}
+
+.text {
+  color: aliceblue;
+  font-size: 2vw;
+  font-family: 'poppins', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
