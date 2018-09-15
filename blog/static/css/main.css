@@ -216,7 +216,8 @@ div.clear-float {
     background-color: #4b2b3e; 
 }
 .image-blend {
-    width: 50%; 
+    /* width: 50%; */
+    width: 85%;
     height: 300px;
     background-color: grey;
     /*
@@ -226,13 +227,21 @@ div.clear-float {
 }
 
 
+/* ATTN!! Create frame like effect */
+.header-img {
+    border-width: 1px; 
+    border-color: lightgrey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 5px 20px 5px 2px; 
+
+    /* Create frame like image border */
+    background-color: lightgrey; 
+    padding: 1em; 
+    box-shadow: inset 0 0 1em 1em lightgrey; 
+}
 
 .hero-text {
-    color: gold; 
-    color: #87CEFA;
-    color: red; 
-    color: yellow; 
-    color: #b20000; 
     color: tomato; 
     
 }
@@ -252,7 +261,7 @@ div.clear-float {
 }
 
 .hero-wrapper2 {
-    width: 100%
+    width: 100%;
 }
 
 .hero-image {
@@ -263,8 +272,8 @@ div.clear-float {
 }
 
 .blend-left {
-    background-color: #4b2b3e; 
     -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
+
 }
 .blend-right {
     width: 100%; 
@@ -272,8 +281,6 @@ div.clear-float {
 
 }
 .blend-img-right {
-    background-color: red;
-
     -webkit-filter: grayscale(100%);filter: grayscale(100%);
         opacity: 0.5;
     filter: alpha(opacity=80); /* For IE8 and earlier */
@@ -310,19 +317,6 @@ div.clear-float {
 
 }
 
-
-.xheader-img {
-    border-width: 1px; 
-    border-color: lightgrey; 
-    border-style: solid; 
-    padding: 3px; 
-    margin: 5px 20px 5px 2px; 
-
-    /* Create frame like image border */
-    background-color: lightgrey; 
-    padding: 1em; 
-    box-shadow: inset 0 0 1em 1em lightgrey; 
-}
 
 
 .xbottom-left {
