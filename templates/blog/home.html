@@ -6,35 +6,12 @@
 
 {% block content %}
 
-<div class="hero-container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="hero-wrapper2">
-                        <div class="hero-image blend-left">
-                            {% thumbnail header_post.image_set.image "x300" as im %}
-                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left"
-                            />{% endthumbnail %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="hero-wrapper6">
-                        <div class="hero-image blend-right">
-                            {% thumbnail header_post.image_set.image "x300" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='header-img blend-img-right'> 
-                            />{% endthumbnail %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-</div>
-
     <div class="hero-wrapper">
         <div class="row">
             <div class="col-md-6">
                 <div class="image-blend">
                     {% thumbnail header_post.image_set.image "x300" as im %}
-                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left" />{% endthumbnail %}
+                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="frame-effect" />{% endthumbnail %}
                 </div>
             </div>
             <div class="col-md-1"></div>
@@ -42,7 +19,7 @@
             <div class="col-md-4">
                 <div class="image-blend">
                     {% thumbnail header_post.image_set.image "x300" as im %}
-                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img blend-img-right" />{% endthumbnail %}
+                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="frame-effect blend-img-right" />{% endthumbnail %}
                 </div>
             </div>
         </div>
@@ -56,69 +33,11 @@
         </div>
     </div>
 
-FFFFFFFFFFFFFFFFFFFFFFFFFF
-
-<div class="hero-wrapper">
-    <div class="image-blend">
-        {% thumbnail header_post.image_set.image "x300" as im %}
-        </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left" />{% endthumbnail %}
-    </div>
-    <div class="hero-text">
-        <h1><span id='hero-text-left'>Amazing</span><span id='hero-text-right'>Medical Stoires</span></h1>
-        <!--
-        <p>And I'm a Photographer</p>
-        <button>Hire me</button>
-        -->
-    </div>
-</div>
-
-YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
-
-<div class="hero-container">
-    <div class="hero-text2">
-        <h1><span id='hero-text-left'>Amazing</span><span id='hero-text-right'>Medical Stories</span></h1>
-        <!--
-        <p>And I'm a Photographer</p>
-        <button>Hire me</button>
-        -->
-    </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="hero-wrapper2">
-                        <div class="hero-image blend-left">
-                            {% thumbnail header_post.image_set.image "x300" as im %}
-                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left"
-                            />{% endthumbnail %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="hero-wrapper6">
-                        <div class="hero-image blend-right">
-                            {% thumbnail header_post.image_set.image "x300" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='header-img blend-img-right'> 
-                            />{% endthumbnail %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-</div>
 
 
 
 
 
-
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <!-- Top empty space -->
-            </br>
-            </div>
-        </div>
-    </div>
 
 
 
