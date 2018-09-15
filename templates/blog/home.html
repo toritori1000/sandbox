@@ -5,7 +5,6 @@
 
 
 {% block content %}
-
     <div class="hero-wrapper">
         <div class="row">
             <div class="col-md-6">
@@ -18,7 +17,7 @@
             
             <div class="col-md-4">
                 <div class="image-blend">
-                    {% thumbnail header_post.image_set.image "x300" as im %}
+                    {% thumbnail header_post_2.image_set.image "x300" as im %}
                     </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="frame-effect blend-img-right" />{% endthumbnail %}
                 </div>
             </div>
@@ -32,12 +31,6 @@
             -->
         </div>
     </div>
-
-
-
-
-
-
 
 
 

@@ -24,12 +24,16 @@ def home(request):
     home_post = HomePost.objects.filter(current=1)
 
     header_post_id = home_post[0].header_post_id
+    header_post_2_id = home_post[0].header_post_2_id
     header_post = Post.objects.filter(id=header_post_id)
+    header_post_2 = Post.objects.filter(id=header_post_2_id)
     feature_posts = home_post[0].feature_posts.all()
 
+    # ATTN!!: header image needs to be a long image width > 300px
     context = {
         'home_post': home_post[0],
         'header_post': header_post[0],
+        'header_post_2': header_post_2[0],
         'feature_posts': feature_posts,
     }
 

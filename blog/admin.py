@@ -34,13 +34,20 @@ class HomePostForm(forms.ModelForm):
         Raise error if any feature_posts (many-to-many field) values the same
         as title_post.
         """
-        title_post = self.cleaned_data.get('title_post')
+        header_post = self.cleaned_data.get('header_post')
+        header_post_2 = self.cleaned_data.get('header_post_2')
         feature_posts = self.cleaned_data.get('feature_posts')
+
         for feature_post in feature_posts:
-            if feature_post == title_post:
+            if feature_post == header_post:
                 raise ValidationError(
                     "The feature post needs to be different from "
-                    "the selected title post: '{}'.".format(title_post))
+                    "the selected title post: '{}'.".format(header_post))
+
+            if feature_post == header_post_2:
+                raise ValidationError(
+                    "The feature post needs to be different from "
+                    "the selected title post: '{}'.".format(header_post_2))
 
 
 class HomePostAdmin(admin.ModelAdmin):
@@ -48,7 +55,8 @@ class HomePostAdmin(admin.ModelAdmin):
 
     fieldsets = [
         (None, {'fields': ['current', 'title', 'caption', 'description',
-                           'alt_text', 'header_post', 'feature_posts']}),
+                           'alt_text', 'header_post', 'header_post_2',
+                           'feature_posts']}),
         ('Date Information', {'fields': ['published_date', 'created_date'],
                               'classes': ['collapse']})
     ]

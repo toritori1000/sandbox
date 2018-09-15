@@ -331,16 +331,22 @@ class HomePost(models.Model):
         (1, 'Yes'),
         (0, 'No'),
     )
-    current = models.IntegerField(choices=CURRENT, default=0)
+    current = models.IntegerField(choices=CURRENT, default=1)
     title = models.CharField(max_length=200)
     caption = models.CharField(max_length=1000, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     alt_text = models.TextField(blank=True, null=True)
+
+    # ATTN!!: header image needs to be a long image width > 300px
     header_post = models.ForeignKey(Post, on_delete=models.CASCADE,
                                     related_name='header_post', null=True,
                                     blank=True)
-    # Note: feature_posts should not be the same as title_post
-    # See the admin form validation in admin.py.
+    header_post_2 = models.ForeignKey(Post, on_delete=models.CASCADE,
+                                      related_name='header_post_2', null=True,
+                                      blank=True)
+    # ATTN!!: header_post or header_post_2 should not be the same as any of the
+    # feature_posts.
+    # See clean(), the admin form validation, in admin.py.
     feature_posts = models.ManyToManyField(Post, default=1,
                                            related_name='feature_posts')
     created_date = models.DateTimeField(default=timezone.now)

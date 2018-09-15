@@ -217,9 +217,10 @@ div.clear-float {
 }
 .image-blend {
     /* width: 50%; */
-    width: 85%;
+    width: 85%;     /* controls proportion of faded area. */
     height: 300px;
-    background-color: grey;
+    background-color: #4b2b3e; /* without top grey freame edge */ 
+    background-color: grey;   /* with top grey frame-edge */
     /*
      -webkit-mask: linear-gradient(90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
      */
