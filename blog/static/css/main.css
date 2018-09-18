@@ -30,7 +30,7 @@ span {
 
 /* navbar color and border */
 .navbar {
-    border-bottom: 2px solid #666666 !important; 
+    border-bottom: 1px solid #6e5564 !important; 
     background-color: #4b2b3e !important; 
 }
 
@@ -39,24 +39,16 @@ span {
     color: lightgrey;
     background-color: #432637;
 }
-
-.ximg-fluid {
-    max-width: 250px;
-    padding-bottom: 20px;
+/* custom search box border color */
+.input-group-addon {
+    border: solid 1px #666666;
+    border-radius: 4px;
 }
-.ximg-box {
-    background-color: white;
-    max-width: 250px;
-    height:100%;
-}
-.ximg-thumnail {
-    float: left; 
-}
-.ximg-text {
-    color: red;
-    float: right; 
+.form-control {
+    border: solid 1px #4b2b3e; 
 }
 
+/* custom side-bar items */ 
 .custom-tag {
     color: tomato;
     /* wrap button text */
@@ -226,9 +218,12 @@ div.clear-float {
 
 /* ATTN!! Create picture frame like effect */
 .frame-effect {
+    border: 1px solid lightgrey; 
+    /*
     border-width: 1px; 
     border-color: lightgrey; 
     border-style: solid; 
+    */
     padding: 3px; 
     margin: 5px 20px 5px 2px; 
 
@@ -248,18 +243,20 @@ div.clear-float {
     padding: 0px 0px 20px 0px;
     background-color: #4b2b3e; 
 }
-
+.hero-row {
+    border-bottom: 1px solid #6e5564 !important; 
+}
 
 
 /* Crop hero image */
-.thumbnail {
+.hero-thumbnail {
   position: relative;
   width: 1300px;
   height: 400px;
   right: 100px;
   overflow: hidden;
 }
-.thumbnail img {
+.hero-thumbnail img {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -269,7 +266,7 @@ div.clear-float {
       -ms-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
 }
-.thumbnail img.portrait {
+.hero-thumbnail img.portrait {
   width: 100%;
   height: auto;
 }
@@ -444,4 +441,3 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     color: #1E90FF;
     font-size: 0.8em;
 }
-
