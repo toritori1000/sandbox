@@ -3,7 +3,8 @@ body {
     padding-top: 0;
     padding-bottom: 0;
     /*color: #7c7c7c;*/
-    background-color: #ECECEA;
+    /* background-color: #ECECEA;*/
+    background-color: #4b2b3e; 
 }
 
 .top-buffer {
@@ -317,7 +318,7 @@ div.clear-float {
 /* transparent background */
 .hero-text {
     background-color: white; 
-     opacity: 0.6;
+     opacity: 0.7;
     filter: alpha(opacity=60); /* For IE8 and earlier */
     
         border-radius: 25px;
@@ -416,9 +417,13 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     padding: 0.3em; 
     box-shadow: inset 0 0 0.3em 0.3em lightgrey; 
 }
+.slide-show {
+    background-color: #4b2b3e; 
+}
 .slide-container {
     /* The is necessary to avoid the lapsed image effect during slide shift */
-    background-color: #ECECEA; /* use body or whatever parent bk color */
+    /* background-color: #ECECEA; /* use body or whatever parent bk color */
+    background-color: #4b2b3e; 
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -439,3 +444,4 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     color: #1E90FF;
     font-size: 0.8em;
 }
+

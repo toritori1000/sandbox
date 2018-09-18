@@ -25,8 +25,8 @@
         </div>
     </div>
 
+<!--
 
-PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
     <div class="hero-wrapper">
         <div class="row">
             <div class="col-md-6">
@@ -47,22 +47,17 @@ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
         
         <div class="hero-text">
             <h1><span id='hero-text-left'>Amazing</span><span id='hero-text-right'>Medical Stories</span></h1>
-            <!--
             <p>And I'm a Photographer</p>
             <button>Hire me</button>
-            -->
         </div>
     </div>
-
-
-RRRRRRRRRRRRRRRRRRRRRRR
+-->
 
 <!-- Slide show with BootsTrap carousel -->
 <!-- https://www.codeply.com/go/3EQkUOhhZz -->
 
 
-<div class="container text-center my-3">
-    <h2>Bootstrap 4 Multiple Item Carousel</h2>
+<div class="container slide-show">
     <div class="row mx-auto my-auto">
         <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
             <div class="carousel-inner w-100" role="listbox">
@@ -96,138 +91,11 @@ RRRRRRRRRRRRRRRRRRRRRRR
             </a>
         </div>
     </div>
-    <h4>Advances one slide at a time</h4>
 </div>
 
 
 
 
-QQQQQQQQQQQQQQQQQQQQQQQQ
-<div class="gallery">
-
-                {% for post in feature_posts %}
-                    <div>
-                        <div class="container">
-                            {% thumbnail post.image_set.image "x200" as im %}
-                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
-                            />{% endthumbnail %}
-                        </div>
-                    </div>
-                {% endfor %}
-
-
-</div>
-
-HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-<div class="gallery">
-
-            <!-- Display 3 image per row using 'columns' filter -->
-            {% for row in feature_posts|columns:3 %}
-                <div class="row">
-                    {% for post in row %}
-                        <div class="col-sm-4 col-md-3 col-lg-3 img-col">
-                            {% thumbnail post.image_set.image "x200" as im %}
-                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
-                            />{% endthumbnail %}
-                        </div>
-                    {% endfor %}
-                </div>
-            
-            {% endfor %}
-
-
-                    
-
-</div>
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-<div class="gallery">
-                {% for post in feature_posts %}
-                    <div>
-                        <div class="container">
-                            {% thumbnail post.image_set.image "x200" as im %}
-                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
-                            />{% endthumbnail %}
-                        </div>
-                    </div>
-                {% endfor %}
-
-</div>
-
-
-GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
-
-
-<div class="gallery">
-    <div>
-        <div class="container">
-            {% thumbnail header_post.image_set.image "x200" as im %}
-            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
-            />{% endthumbnail %}
-
-            <div class="overlay">
-                <div class="text">Hello</div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            
-            {% thumbnail header_post.image_set.image "x200" as im %}
-            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
-            />{% endthumbnail %}
-
-            <div class="overlay">
-                <div class="text">Hello</div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            
-            {% thumbnail header_post.image_set.image "x200" as im %}
-            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
-            />{% endthumbnail %}
-
-            <div class="overlay">
-                <div class="text">Hello</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-SSSSSSSSSSSSSSSSSSSSSSS
-
-
-<!--
-<div class="fade-test">This is the div
-
-                {% thumbnail header_post.image_set.image "x400" as im %}
-                </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img blog-img-left" />{% endthumbnail %}
-
-    
-</div>
--->
-
-
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <!--
-                {% thumbnail header_post.image_set.image "x400" as im %}
-                </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="header-img blog-img-left" />{% endthumbnail %}
-                -->
-                <p>
-                    <span class="img-title">{{ header_post.title }}</span>
-                </p>
-            DDDD {{ header_post.text }}
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container">
 
@@ -267,8 +135,8 @@ SSSSSSSSSSSSSSSSSSSSSSS
             {% endfor %}
         </div>
 
-        <!-- Sidebar col-md-3 -->
-        {% include "includes/sidebar.html" %}
+        <!-- Sidebar col-md-3 
+        -->
     </div>
 </div>
 
