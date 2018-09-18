@@ -5,6 +5,28 @@
 
 
 {% block content %}
+
+    <div class="hero-wrapper2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="thumbnail">
+                    {% thumbnail header_post.image_set.image "1200x350" crop='center' as im %}
+                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="blur-effect hero-img-blend" />{% endthumbnail %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-text">
+            <h1><span id='hero-text-left'>Amazing</span><span id='hero-text-right'>Medical Stories</span></h1>
+            <!--
+            <p>And I'm a Photographer</p>
+            <button>Hire me</button>
+            -->
+        </div>
+    </div>
+
+
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
     <div class="hero-wrapper">
         <div class="row">
             <div class="col-md-6">
@@ -33,15 +55,112 @@
     </div>
 
 
+RRRRRRRRRRRRRRRRRRRRRRR
+
+<!-- Slide show with BootsTrap carousel -->
+<!-- https://www.codeply.com/go/3EQkUOhhZz -->
+
+
+<div class="container text-center my-3">
+    <h2>Bootstrap 4 Multiple Item Carousel</h2>
+    <div class="row mx-auto my-auto">
+        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner w-100" role="listbox">
+                <div class="carousel-item active">
+                    <div class="slide-container">
+                        {% thumbnail header_post.image_set.image "x200" as im %}
+                        </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
+                        />{% endthumbnail %}
+                        <p class='slide-caption'>{{header_post.thumbnail_title|truncatewords:5}}</p>
+                    </div>
+                </div>
+                {% for post in feature_posts %}
+                    <div class="carousel-item">
+                        <div class="slide-container">
+                        {% thumbnail post.image_set.image "x200" as im %}
+                        </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
+                        />{% endthumbnail %}
+                        <p class='slide-caption'>{{post.thumbnail_title|truncatewords:5}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <h4>Advances one slide at a time</h4>
+</div>
+
+
+
 
 QQQQQQQQQQQQQQQQQQQQQQQQ
+<div class="gallery">
 
+                {% for post in feature_posts %}
+                    <div>
+                        <div class="container">
+                            {% thumbnail post.image_set.image "x200" as im %}
+                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
+                            />{% endthumbnail %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+</div>
+
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+<div class="gallery">
+
+            <!-- Display 3 image per row using 'columns' filter -->
+            {% for row in feature_posts|columns:3 %}
+                <div class="row">
+                    {% for post in row %}
+                        <div class="col-sm-4 col-md-3 col-lg-3 img-col">
+                            {% thumbnail post.image_set.image "x200" as im %}
+                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
+                            />{% endthumbnail %}
+                        </div>
+                    {% endfor %}
+                </div>
+            
+            {% endfor %}
+
+
+                    
+
+</div>
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+<div class="gallery">
+                {% for post in feature_posts %}
+                    <div>
+                        <div class="container">
+                            {% thumbnail post.image_set.image "x200" as im %}
+                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
+                            />{% endthumbnail %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+</div>
+
+
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
 
 <div class="gallery">
     <div>
         <div class="container">
-            
             {% thumbnail header_post.image_set.image "x200" as im %}
             </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left img"
             />{% endthumbnail %}
@@ -79,14 +198,8 @@ QQQQQQQQQQQQQQQQQQQQQQQQ
 
 
 
-RRRRRRRRRRRRRRRRRRRRRRR
+SSSSSSSSSSSSSSSSSSSSSSS
 
-
-
-
-<br/>
-<br/>
-<br/>
 
 <!--
 <div class="fade-test">This is the div
@@ -115,54 +228,6 @@ RRRRRRRRRRRRRRRRRRRRRRR
         </div>
     </div>
 </div>
-
-
-
-
-
-<div id="banner" style="overflow: hidden; ">
-    <div class="image-div">
-        <img src="img1.jpg">
-    </div>
-
-    <div class="image-div">
-        <img src="img2.jpg">
-    </div>
-
-    <div class="image-div">
-        <img src="img3.jpg">
-    </div>
-    <div style="clear:left;"></div>
-</div>
-
-
-<div class="img-container">
-                {% thumbnail header_post.image_set.image "x400" as im %}
-                </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img xblog-img-left" />{% endthumbnail %}
-    <!--
-    <img src="/media/cache/77/04/7704597e2c2bd16f7f8bea9b19c67a40.jpg" alt="Snow" style="height:300;" class="header-img"/>
-    -->
-    <div class="bottom-left">Bottom Left</div>
-    <div class="top-left">Top Left</div>
-    <div class="top-right">Top Right</div>
-    <div class="bottom-right">Bottom Right</div>
-    <div class="centered hero-text">
-
-        <!-- Hero Text 
-        <h1>Amazing Medical Stories</h1>
-        -->
-        <h1><span class='hero-text-left'>Amazing</span><span class='hero-text-right'>Medical Stoires</span></h1>
-        <p>And I'm a Photographer</p>
-        <button>Hire me</button>
-    </div>
-</div>
-
-
-<!-- 
-QQQQQ<img src="/media/images/blog/bird_mGltKEf.jpeg" alt="bird" class="header-img"/>FFFF
--->
-
-
 
 <div class="container">
 

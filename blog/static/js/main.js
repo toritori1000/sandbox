@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
     $('#recipeCarousel').carousel({
-        interval: 10000
+        //interval: 10000
+        pause: true,
+        interval: false
     })
 
     $('.carousel .carousel-item').each(function () {
@@ -20,6 +22,9 @@ $(document).ready(function () {
             next.children(':first-child').clone().appendTo($(this));
         }
     });
+
+
+
 
 });
 

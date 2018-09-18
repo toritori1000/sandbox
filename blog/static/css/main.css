@@ -18,6 +18,7 @@ span {
     overflow: hidden
 }
 
+
 .jumbotron {
     padding: 5em inherit;
 }
@@ -26,22 +27,31 @@ span {
    font-size: 16px;
 }
 
-.img-fluid {
+/* navbar color and border */
+.navbar {
+    border-bottom: 2px solid #666666 !important; 
+    background-color: #4b2b3e !important; 
+}
+
+/* global search box */
+#search-box{
+    color: lightgrey;
+    background-color: #432637;
+}
+
+.ximg-fluid {
     max-width: 250px;
     padding-bottom: 20px;
 }
-
-.img-box {
+.ximg-box {
     background-color: white;
     max-width: 250px;
     height:100%;
-
 }
-
-.img-thumnail {
+.ximg-thumnail {
     float: left; 
 }
-.img-text {
+.ximg-text {
     color: red;
     float: right; 
 }
@@ -53,7 +63,6 @@ span {
     word-wrap: break-word;
     border: 1px solid white;
 }
-
 .custom-cat {
     color: #009900;
     /* wrap button text */
@@ -61,15 +70,12 @@ span {
     word-wrap: break-word;
     border: 1px solid white;
 }
-
 .custom-arch {
     font-size: 13px;
 }
-
 .custom-event {
     font-size: 13px;
 }
-
 .custom-tag:hover, .custom-cat:hover {
     background-color: #D4E6F1;
 }
@@ -82,7 +88,6 @@ span {
     margin: 5px 20px 5px 2px; 
     float: left;    
 } 
-
 .blog-img-right { 
     border-width: 1px; 
     border-color: grey; 
@@ -90,7 +95,6 @@ span {
     padding: 3px; 
     margin: 5px 2px 5px 20px; 
 } 
-
 div.clear-float {
     clear: left; 
     margin: 20px;
@@ -109,12 +113,6 @@ div.clear-float {
     font-size: 14px;
     padding: 5px 40px 5px 10px;
 }
-.xpost-thumb {
-    float: left
-}
-.xpost-thumb img {
-    display: block
-}
 .post-content {
     margin-left: 210px
 }
@@ -122,23 +120,20 @@ div.clear-float {
     font-weight: bold;
     font-size: 200%
 }
+
+.xpost-thumb {
+    float: left
+}
+.xpost-thumb img {
+    display: block
+}
+
 .img-col {
     font-size: 14px;
     color: black;
     color: white;
     border: 2px solid white;
     padding: 5px 5px 5px 10px;
-    background-color: #306754;
-    background-color: #7F462C; 
-    background-color: #0C090A; 
-    background-color: #141517;
-    background-color: #1E1F21;
-    background-color: #323335; 
-    background-color: #6799A3; 
-    background-color: #1f5846; 
-    background-color: #393d40; 
-    background-color: #371729; 
-    background-color: #5e4553; 
     background-color: #4b2b3e; 
 }
 
@@ -160,7 +155,7 @@ div.clear-float {
     background-color: #4b2b3e; 
 }
 
-.title-img {
+.xtitle-img {
   background-color: red;
   width: auto !important; /*override the width below*/
   width: 100%;
@@ -242,6 +237,50 @@ div.clear-float {
     box-shadow: inset 0 0 1em 1em lightgrey; 
 }
 
+/* ATTN!! Create picture frame like effect */
+
+/* blend mode */
+.hero-wrapper2 {
+    position: relative;
+    width: 100%; 
+    height: 425px;
+    padding: 0px 0px 20px 0px;
+    background-color: #4b2b3e; 
+}
+
+
+
+/* Crop hero image */
+.thumbnail {
+  position: relative;
+  width: 1300px;
+  height: 400px;
+  right: 100px;
+  overflow: hidden;
+}
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
 .hero-text {
     color: tomato; 
     
@@ -266,74 +305,26 @@ div.clear-float {
 .blend-img-right {
     -webkit-filter: grayscale(100%);filter: grayscale(100%);
         opacity: 0.5;
-    filter: alpha(opacity=80); /* For IE8 and earlier */
+    filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
-
-
-
-.img-container {
-    position: relative;
-    text-align: center;
-    color: white;
-
-    background-color: black; 
-    
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/media/cache/77/04/7704597e2c2bd16f7f8bea9b19c67a40.jpgx");*/
-
-    /* Add effect: Grey image with opacity reduced */
+.hero-img-blend {
     -webkit-filter: grayscale(100%);filter: grayscale(100%);
         opacity: 0.8;
     filter: alpha(opacity=80); /* For IE8 and earlier */
-
 }
 
+/* transparent background */
+.hero-text {
+    background-color: white; 
+     opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    
+        border-radius: 25px;
 
-
-.xbottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-}
-
-.xtop-left {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-}
-
-.xtop-right {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-}
-
-.xbottom-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-}
-
-.xcentered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.ximage-div{
-  float:left;
-  margin-right:10px;
-  max-width: 20%;
-  max-height: 20%;
-
-}
-
-
-/* global search box */
-#search-box{
-    color: lightgrey;
-    background-color: #432637;
+        -moz-border-radius: 15px; /*for mozilla support*/
+-webkit-border-radius: 15px; /*for chrome support*/
+border-radius: 15px;
 }
 
 
@@ -341,13 +332,12 @@ div.clear-float {
 
 
 
-.container {
-  position: relative;
-  width: 100%;
-}
+
+
+
 
 .gallery {
-  width: 25%;
+  width: 30%; /* how much % image overlapping */
   padding: 0vw;
   margin: 3%;
   border-radius: 5vw;
@@ -356,8 +346,7 @@ div.clear-float {
   margin-left: 5%
 }
 
-
-.overlay {
+.xoverlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -370,7 +359,7 @@ div.clear-float {
   background-color: blueviolet;
 }
 
-.text {
+.xtext {
   color: aliceblue;
   font-size: 2vw;
   font-family: 'poppins', sans-serif;
@@ -379,4 +368,74 @@ div.clear-float {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+
+/* BootsTrap carousel */
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  transform: translateX(25%);
+}
+.carousel-inner .carousel-item-left.active, 
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-25%);
+}
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+
+/* Change slide show arrow to #ff0347 (tomato) or #00ffff (cyan), the color 
+good for both dark and light background. 
+/* The solution below works for bootstrap4 only. Replacing 'fff' in 
+fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
+*/ 
+.carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6347' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6347' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.slide-img-frame {
+    border-width: 1px; 
+    border-color: lightgrey; 
+    border-style: solid; 
+    padding: 3px; 
+    /*margin: 5px 20px 5px 2px;*/ 
+    margin-left: 15px;
+
+    /* Create frame like image border */
+    background-color: lightgrey; 
+    padding: 0.3em; 
+    box-shadow: inset 0 0 0.3em 0.3em lightgrey; 
+}
+.slide-container {
+    /* The is necessary to avoid the lapsed image effect during slide shift */
+    background-color: #ECECEA; /* use body or whatever parent bk color */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background-color: white; 
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.slide-caption {
+    text-align: center; 
+    color: #5F9EA0; 
+    color: #1E90FF;
+    font-size: 0.8em;
 }

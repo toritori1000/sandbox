@@ -13,15 +13,23 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <!-- Font-awesome -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        {% block header %}
-        {% endblock %}
+
+        <!-- tether.js needs to be placed bfore bootstrp.js 
+        <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script> 
+        -->
+        <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
+        
     </head>
 
 
     <body>
     <!-- YOUR CONTENT STARTS HERE -->
-    <!-- Navigation -->
+    <!-- Navigation 
     <nav class="navbar navbar-expand-sm navbar-dark" style="background: #4b2b3e;">
+    -->
+    <nav class="navbar navbar-expand-sm navbar-dark" >
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -91,5 +99,6 @@
 
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     </body>
 </html>

@@ -284,6 +284,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         'auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    thumbnail_title = models.CharField(max_length=100, blank=True, null=True)
     text = models.TextField()
     keywords = models.CharField(max_length=1000)
     created_date = models.DateTimeField(default=timezone.now)
@@ -319,7 +320,9 @@ class Post(models.Model):
         Slugify title if slug field doesn't exist.
         IMPORTANT: doesn't check to see if slug is a dupe!
         """
-        self.slug = slugify(self.title)
+
+        # first 50 char of the title
+        self.slug = slugify(self.title[0:49])
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
