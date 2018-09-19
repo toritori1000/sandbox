@@ -17,7 +17,7 @@
         </div>
         
         <div class="hero-text">
-            <h1><span id='hero-text-left'>Amazing</span><span id='hero-text-right'>Medical Stories</span></h1>
+            <h1>Amazing Medical Story</h1>
             <!--
             <p>And I'm a Photographer</p>
             <button>Hire me</button>
@@ -100,30 +100,31 @@
 <div class="container">
 
     <div class="row top-buffer">
-        <div class="col-sm-9 col-md-9 col-lg-9">
+        <div class="col-sm-12 col-md-12 col-lg-12">
 
 
             <!-- Display 3 image per row using 'columns' filter -->
-            {% for row in feature_posts|columns:3 %}
-                <div class="row row-no-padding">
+            {% for row in feature_posts|columns:4 %}
+                <div class="row">
                     {% for post in row %}
-                        <div class="col-sm-6 col-md-4 col-lg-4 img-col">
-                            <!-- Image: size determins spacing between columns. -->
-                            {% thumbnail post.image_set.image "210x210" crop="center" as im %}
-                            </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-left" />{% endthumbnail %}
-                            <p>
-                                <span class="img-title">{{ post.title }}</span>
-                            </p>
-                            <p>
-                                {{ post.text|truncatewords:25 }}
-                                <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
-                               
-                                MMMM
-                                {{ post.event_date }}
-                                FFFF
+                        <div class="col-sm-6 col-md-4 col-lg-4 home-img-col">
+                            <!-- Space between cols determined by image size. -->
+                            {% thumbnail post.image_set.image "300x400" crop="center" as im %}
+                            </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-center" />
+                            {% endthumbnail %}
 
-                            </p>
+                            <div class="home-img-caption">
 
+                                <div class="home-img-title">
+                                    {{ post.title }}
+                                </div>
+                                <div class="home-img-text">
+                                    <p>
+                                        {{ post.text|truncatewords:25 }}
+                                        <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
+                                    </p>
+                                </div>
+                            </div>
 
 
                             <!--
