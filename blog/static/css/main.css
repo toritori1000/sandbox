@@ -145,12 +145,19 @@ div.clear-float {
 .home-img-col {
     font-size: 14px;
     color: white;
-    border: 2px solid lightgrey; 
-    padding: 5px 5px 5px 10px;
+    /* image frame */
+    border: 1px solid #5d4051; 
     background-color: #4b2b3e; 
+    
 }
 
 .home-img-col img {
+     /* Space between cols depends on image size and col-# width. */ 
+    /* center the image */ 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     padding-bottom: 10px;
 }
 
@@ -302,21 +309,6 @@ div.clear-float {
     filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
-/* transparent background */
-.xhero-text {
-    background-color: white; 
-    background-color: black; 
-     opacity: 0.7;
-    filter: alpha(opacity=60); /* For IE8 and earlier */
-    
-        border-radius: 25px;
-
-        -moz-border-radius: 15px; /*for mozilla support*/
--webkit-border-radius: 15px; /*for chrome support*/
-border-radius: 15px;
-
-}
-
 /* Place text in the middle of the image */
 .hero-text {
     position: absolute;
@@ -335,54 +327,6 @@ border-radius: 15px;
     filter: alpha(opacity=60); /* For IE8 and earlier */
     border-radius: 25px;
 }
-}
-.xxhero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-    background-color: black; 
-    color: #273032;
-    color: white; 
-
-    /*
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    */
-
-    
-
-    opacity: 0.7;
-    filter: alpha(opacity=60); /* For IE8 and earlier */
-    border-radius: 25px;
-
-    /*font-family: "Source Sans Pro","Roboto","Open Sans",Arial,sans-serif !important;*/
-    font-family: 'Open Sans', sans-serif;
-
-
-font-size: 2em;
-font-weight: bold;
-line-height: 1.25;
-margin-bottom: 1em;
-    
-
-
-    /*
-    color: white;
-    color: green; 
-
-    */
-
-
-}
-
-
-
-
-
-
-
-
 
 .gallery {
   width: 30%; /* how much % image overlapping */

@@ -17,7 +17,10 @@
         </div>
         
         <div class="hero-text">
-            <h1>Amazing Medical Story</h1>
+            <h1>Amazing Medical Stories</h1>
+            <!--
+            <h1><span id='hero-text-left'>Amazing</span><span id='hero-text-right'>Medical Stories</span></h1>
+            -->
             <!--
             <p>And I'm a Photographer</p>
             <button>Hire me</button>
@@ -107,10 +110,10 @@
             {% for row in feature_posts|columns:4 %}
                 <div class="row">
                     {% for post in row %}
-                        <div class="col-sm-6 col-md-4 col-lg-4 home-img-col">
-                            <!-- Space between cols determined by image size. -->
-                            {% thumbnail post.image_set.image "300x400" crop="center" as im %}
-                            </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-center" />
+                        <div class="col-sm-4 col-md-4 col-lg-4 home-img-col">
+                            <!-- Use 3:4 of w:h for fix size image -->
+                            {% thumbnail post.image_set.image "270x360" crop="center" as im %}
+                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="home-img" />
                             {% endthumbnail %}
 
                             <div class="home-img-caption">
