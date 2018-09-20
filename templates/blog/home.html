@@ -59,89 +59,93 @@
 <!-- Slide show with BootsTrap carousel -->
 <!-- https://www.codeply.com/go/3EQkUOhhZz -->
 
+<div class="home-content-wrapper">
+   <!-- the wrapper provides content background color --> 
 
-<div class="container slide-show">
-    <div class="row mx-auto my-auto">
-        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
-            <div class="carousel-inner w-100" role="listbox">
-                <div class="carousel-item active">
-                    <div class="slide-container">
-                        {% thumbnail header_post.image_set.image "x200" as im %}
-                        </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
-                        />{% endthumbnail %}
-                        <p class='slide-caption'>{{header_post.thumbnail_title|truncatewords:5}}</p>
-                    </div>
-                </div>
-                {% for post in feature_posts %}
-                    <div class="carousel-item">
+    <div class="container slide-show">
+        <div class="row mx-auto my-auto">
+            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner w-100" role="listbox">
+                    <div class="carousel-item active">
                         <div class="slide-container">
-                        {% thumbnail post.image_set.image "x200" as im %}
-                        </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
-                        />{% endthumbnail %}
-                        <p class='slide-caption'>{{post.thumbnail_title|truncatewords:5}}</p>
+                            {% thumbnail header_post.image_set.image "x200" as im %}
+                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
+                            />{% endthumbnail %}
+                            <p class='slide-caption'>{{header_post.thumbnail_title|truncatewords:5}}</p>
                         </div>
                     </div>
-                {% endfor %}
-                
-            </div>
-            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="container">
-
-    <div class="row top-buffer">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-
-
-            <!-- Display 3 image per row using 'columns' filter -->
-            {% for row in feature_posts|columns:4 %}
-                <div class="row">
-                    {% for post in row %}
-                        <div class="col-sm-4 col-md-4 col-lg-4 home-img-col">
-                            <!-- Use 3:4 of w:h for fix size image -->
-                            {% thumbnail post.image_set.image "270x360" crop="center" as im %}
-                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="home-img" />
-                            {% endthumbnail %}
-
-                            <div class="home-img-caption">
-
-                                <div class="home-img-title">
-                                    {{ post.title }}
-                                </div>
-                                <div class="home-img-text">
-                                    <p>
-                                        {{ post.text|truncatewords:25 }}
-                                        <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
-                                    </p>
-                                </div>
+                    {% for post in feature_posts %}
+                        <div class="carousel-item">
+                            <div class="slide-container">
+                            {% thumbnail post.image_set.image "x200" as im %}
+                            </figure><img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
+                            />{% endthumbnail %}
+                            <p class='slide-caption'>{{post.thumbnail_title|truncatewords:5}}</p>
                             </div>
-
-
-                            <!--
-                            <img src="{{post.image_set.image.url}}" height="220px" width="220px" class="xblog-img-left"/>
-                            -->
                         </div>
                     {% endfor %}
+                    
                 </div>
-            {% endfor %}
+                <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
-
-        <!-- Sidebar col-md-3 
-        -->
     </div>
+    
+    
+    
+    
+    <div class="container">
+    
+        <div class="row top-buffer">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+    
+    
+                <!-- Display 3 image per row using 'columns' filter -->
+                {% for row in feature_posts|columns:4 %}
+                    <div class="row">
+                        {% for post in row %}
+                            <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
+                                <!-- Use 3:4 of w:h for fix size image -->
+                                {% thumbnail post.image_set.image "270x360" crop="center" as im %}
+                                </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="home-img" />
+                                {% endthumbnail %}
+
+                                <div class="caption">
+                                    <div class="title">
+                                        {{ post.title }}
+                                    </div>
+                                    <div class="text">
+                                        <p>
+                                            {{ post.text|truncatewords:25 }}
+                                            <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
+                                        </p>
+                                    </div>
+                                </div>
+    
+    
+                                <!--
+                                <img src="{{post.image_set.image.url}}" height="220px" width="220px" class="xblog-img-left"/>
+                                -->
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <!-- Sidebar col-md-3 
+            -->
+        </div>
+    </div>
+<!-- container -->
 </div>
+<!-- content-wrapper -->
+
 
 {% endblock %}
