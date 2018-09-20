@@ -23,10 +23,6 @@ span {
     padding: 5em inherit;
 }
 
-.post {
-   font-size: 16px;
-}
-
 /* navbar color and border */
 .navbar {
     border-bottom: 1px solid #6e5564 !important; 
@@ -77,55 +73,11 @@ span {
     background-color: #D4E6F1;
 }
 
-.blog-img-left { 
-    border-width: 1px; 
-    border-color: grey; 
-    border-style: solid; 
-    padding: 3px; 
-    margin: 5px 20px 5px 2px; 
-    float: left;    
-} 
-.blog-img-right { 
-    border-width: 1px; 
-    border-color: grey; 
-    border-style: solid; 
-    padding: 3px; 
-    margin: 5px 2px 5px 20px; 
-} 
-.blog-img-left { 
-    border-width: 1px; 
-    border-color: grey; 
-    border-style: solid; 
-    padding: 3px; 
-    margin: 5px 20px 5px 2px; 
-    float: right;    
-} 
-
-div.clear-float {
-    clear: left; 
-    margin: 20px;
-}
 
 .side-bar {
     background-color: #f9fbfc; 
 }
 
-.post-container {
-    margin: 20px 20px 0 0;  
-    border: 5px solid #333;
-    overflow: auto
-}
-.post-col {
-    font-size: 14px;
-    padding: 5px 40px 5px 10px;
-}
-.post-content {
-    margin-left: 210px
-}
-.post-title {
-    font-weight: bold;
-    font-size: 200%
-}
 
 .xpost-thumb {
     float: left
@@ -184,20 +136,57 @@ div.clear-float {
 }
 
 
-.img-title {
-    font-size: 20px;
-    font-family: 'Raleway',sans-serif;
+/* post page title */
+.post-container {
+    margin: 20px 20px 0 0;  
+    border: 5px solid #333;
+    overflow: auto
+}
+.post-col {
+    font-size: 14px;
+    padding: 5px 40px 5px 10px;
+}
+.post-content {
+    margin-left: 210px
+}
+.post-title {
+   font-size: 16px;
+}
+.post-title p {
+    font-weight: bold;
+    font-size: 200%
 }
 
+/* post page image */
 .post-page-img {
     font-size: 14px;
     color: black;
     color: white;
-    min-height: 320px; /* im.height + 20px */ 
-    padding: 5px 5px 5px 10px;
+    min-height: 350px; /* im.height + 50px */ 
+    padding: 0px 0px 15px 30px;
     background-color: #4b2b3e; 
 }
-
+.post-page-img img {
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 25px 25px 10px 20px;
+}
+.post-img-right { 
+    float: right;    
+} 
+.post-img-left { 
+    float: left;    
+} 
+div.clear-float {
+    clear: left; 
+    margin: 20px;
+}
+.post-page-img .caption {
+    padding-top: 20px;
+    padding-right: 30px;
+}
 
 /* Customize bootstrap navbar-brand */
 .navbar-brand:hover {

@@ -17,9 +17,11 @@
             <!-- 
             <p>Contributed by: {{ post.author }}</p>
             -->
-            <div class="post">
-                <p class=post-title>{{ post.title }}</p>
-                <p>{{ post.text }}</p>
+            <div class="post-title">
+                <p>{{ post.title }}</p>
+            </div>
+            <div class="post-text">
+                <p align="justify">{{ post.text }}</p>
             </div>
 
             
@@ -31,10 +33,13 @@
                             <img src="{{ im.url }}" align="left" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
                         {%endthumbnail%} 
                         -->
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
-                        <p>
-                            {{ image_obj.description}}
-                        </p>
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='post-img-left'> 
+                        <div class="caption">
+                            <!-- ATTN! text justify on both right and left -->
+                            <p align="justify">
+                                {{ image_obj.description}}
+                            </p>
+                        </div>
                 {%endthumbnail%} 
             </div>
             <!-- clear float to make text of next image in right place. -->
@@ -47,12 +52,15 @@
                     <!-- Wrap text around with align right with HTML or in CSS. 
                         <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
                     -->
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='post-img-right'> 
                     {%endthumbnail%} 
-                    <p>
-                        AAA222
-                        {{ image_obj.img2_description}}
-                    </p>
+
+                    <div class="caption">
+                        <!-- ATTN! text justify on both right and left -->
+                        <p align="justify">
+                            {{ image_obj.img2_description}}
+                        </p>
+                    </div>
                 </div>
                 <div class='clear-float'></div>
             {% endif %}
@@ -63,12 +71,14 @@
                     <!-- Wrap text around with align right with HTML or in CSS. 
                         <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
                     -->
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='post-img-right'> 
                     {%endthumbnail%} 
-                    <p>
-                        AAA222
-                        {{ image_obj.img3_description}}
-                    </p>
+                    <div class="caption">
+                        <!-- ATTN! text justify on both right and left -->
+                        <p align="justify">
+                            {{ image_obj.img3_description}}
+                        </p>
+                    </div>
                 </div>
                 <div class='clear-float'></div>
             {% endif %}
@@ -79,12 +89,15 @@
                     <!-- Wrap text around with align right with HTML or in CSS. 
                         <img src="{{ im.url }}" align="right" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-right'> 
                     -->
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='blog-img-left'> 
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class='post-img-right'> 
                     {%endthumbnail%} 
-                    <p>
-                        AAA222
-                        {{ image_obj.img4_description}}
-                    </p>
+
+                    <div class="caption">
+                        <!-- ATTN! text justify on both right and left -->
+                        <p align="justify">
+                            {{ image_obj.img4_description}}
+                        </p>
+                    </div>
                 </div>
                 <div class='clear-float'></div>
             {% endif %}
@@ -116,5 +129,8 @@
         {% include "includes/sidebar.html" %}
     </div>
 </div>
+
+    <!-- Sidebar col-md-3 -->
+    {% include "includes/footer.html" %}
 
 {% endblock %}
