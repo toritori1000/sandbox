@@ -103,13 +103,13 @@
     
     <div class="container">
     
-        <div class="row top-buffer">
+        <div class="row home-img-row">
             <div class="col-sm-12 col-md-12 col-lg-12">
     
     
                 <!-- Display 3 image per row using 'columns' filter -->
                 {% for row in feature_posts|columns:4 %}
-                    <div class="row">
+                    <div class="row feature-row">
                         {% for post in row %}
                             <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                                 <!-- Use 3:4 of w:h for fix size image -->

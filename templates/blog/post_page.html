@@ -26,6 +26,10 @@
 
             
             <div class="post-page-img">
+
+                <div class="post-text">
+                    <p align="justify">{{ image_obj.description }}</p>
+                </div>
                 {% thumbnail image_obj.image "x300" as im %}
         
                         <!-- Image: Fixed height; Wrap text around with align left. 
@@ -37,7 +41,7 @@
                         <div class="caption">
                             <!-- ATTN! text justify on both right and left -->
                             <p align="justify">
-                                {{ image_obj.description}}
+                                {{ image_obj.legend}}
                             </p>
                         </div>
                 {%endthumbnail%} 
@@ -47,6 +51,17 @@
 
 
             {% if image_obj.img2 %}
+                <div class="post-text">
+                    <p align="justify">{{ image_obj.img2_description }}</p>
+                </div>
+
+                <div class="post-highlight">
+                    <blockquote>
+                        We want to orchestrate harmony across devices and senses.
+                       {{ image_obj.img2_blockquote }}
+                    </blockquote>
+                </div>
+
                 <div class="post-page-img">
                     {% thumbnail image_obj.img2 "x300" as im %} 
                     <!-- Wrap text around with align right with HTML or in CSS. 

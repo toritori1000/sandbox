@@ -78,22 +78,26 @@ class PostImageAdmin(AdminImageMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('image', 'image_tag', 'title', 'legend', 'description',
+                       'use_right_info', 'blockquote',
                        'external_url')
         }),
         ('More images', {
             'classes': ('collapse', 'open'),
-            'fields': ('img2', 'img2_tag', 'img2_title', 'legend2',
-                       'img2_description', 'img2_external_url')
+            'fields': ('img2', 'img2_tag', 'img2_title', 'img2_legend',
+                       'img2_description', 'use_right_info',
+                       'img2_bloackquote', 'img2_external_url')
         }),
         ('More images', {
             'classes': ('collapse', 'open'),
-            'fields': ('img3', 'img3_tag', 'img3_title', 'legend3',
-                       'img3_description', 'img3_external_url')
+            'fields': ('img3', 'img3_tag', 'img3_title', 'img3_legend',
+                       'img3_description', 'img3_use_right_info',
+                       'img3_bloackquote', 'img2_external_url')
         }),
         ('More images', {
             'classes': ('collapse', 'open'),
-            'fields': ('img4', 'img4_tag', 'img4_title', 'legend4',
-                       'img4_description', 'img4_external_url')
+            'fields': ('img4', 'img4_tag', 'img4_title', 'img4_legend',
+                       'img4_description', 'img4_use_right_info',
+                       'img4_bloackquote', 'img2_external_url')
         }),
     )
     readonly_fields = ('image_tag', 'img2_tag', 'img3_tag', 'img4_tag')

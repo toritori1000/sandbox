@@ -6,10 +6,6 @@ body {
     background-color: #ECECEA;
 }
 
-.top-buffer {
-    margin-top:20px;
-}
-
 span {
     width: 400px;
     white-space: nowrap;
@@ -17,7 +13,6 @@ span {
     display: block;
     overflow: hidden
 }
-
 
 .jumbotron {
     padding: 5em inherit;
@@ -43,12 +38,11 @@ span {
     border: solid 1px #4b2b3e; 
 }
 
-.home-content-wrapper {
-    background-color: red;
-    background-color: #4b2b3e; 
-}
 
 /* custom side-bar items */ 
+.side-bar {
+    background-color: #f9fbfc; 
+}
 .custom-tag {
     color: tomato;
     /* wrap button text */
@@ -74,20 +68,7 @@ span {
 }
 
 
-.side-bar {
-    background-color: #f9fbfc; 
-}
-
-
-.xpost-thumb {
-    float: left
-}
-.xpost-thumb img {
-    display: block
-}
-
-
-/* home page image section */
+/* home, index page image section */
 .index-img-col {
     font-size: 14px;
     color: white;
@@ -96,7 +77,6 @@ span {
     background-color: #4b2b3e; 
     
 }
-
 .index-img-col img {
      /* Space between cols depends on image size and col-# width. */ 
     /* center the image */ 
@@ -121,15 +101,6 @@ span {
     font-size: 18px;
     text-align: center; 
 }
-
-
-
-
-
-.top-buffer {
-    margin-top:20px;
-}
-
 .index-row {
     margin-top:20px;
     background-color: #4b2b3e; 
@@ -149,29 +120,69 @@ span {
 .post-content {
     margin-left: 210px
 }
+
 .post-title {
    font-size: 16px;
+   text-align: center;
+   padding-right: 100px; 
+}
+.post-text {
+    padding-right: 30px;
 }
 .post-title p {
     font-weight: bold;
     font-size: 200%
 }
+.post-highlight {
+    color: green;
+    font-size: 120%
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote:after {
+  color: #ccc;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
+
 
 /* post page image */
 .post-page-img {
     font-size: 14px;
-    color: black;
     color: white;
+    color: black;
     min-height: 350px; /* im.height + 50px */ 
+    /*
     padding: 0px 0px 15px 30px;
     background-color: #4b2b3e; 
+    */
 }
 .post-page-img img {
     border-width: 1px; 
     border-color: grey; 
     border-style: solid; 
     padding: 3px; 
-    margin: 25px 25px 10px 20px;
+    margin: 25px 25px 30px 20px;
 }
 .post-img-right { 
     float: right;    
@@ -248,8 +259,6 @@ div.clear-float {
 .hero-row {
     border-bottom: 1px solid #6e5564 !important; 
 }
-
-
 /* Crop hero image */
 .hero-thumbnail {
   position: relative;
@@ -319,7 +328,6 @@ div.clear-float {
     filter: alpha(opacity=60); /* For IE8 and earlier */
     border-radius: 25px;
 }
-
 .gallery {
   width: 30%; /* how much % image overlapping */
   padding: 0vw;
@@ -348,7 +356,6 @@ div.clear-float {
 .carousel-inner .carousel-item-left{ 
   transform: translateX(0);
 }
-
 /* Change slide show arrow to #ff0347 (tomato) or #00ffff (cyan), the color 
 good for both dark and light background. 
 /* The solution below works for bootstrap4 only. Replacing 'fff' in 
@@ -357,11 +364,9 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
 .carousel-control-prev-icon {
  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6347' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
 }
-
 .carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6347' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
-
 .slide-img-frame {
     border-width: 1px; 
     border-color: lightgrey; 
@@ -376,6 +381,7 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     box-shadow: inset 0 0 0.3em 0.3em lightgrey; 
 }
 .slide-show {
+    padding-top: 50px;
     background-color: #4b2b3e; 
 }
 .slide-container {
@@ -383,7 +389,6 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     /* background-color: #ECECEA; /* use body or whatever parent bk color */
     background-color: #4b2b3e; 
 }
-
 .carousel-control-prev-icon, .carousel-control-next-icon {
     width: 30px;
     height: 30px;
@@ -395,10 +400,22 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     background-color: white; 
     box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
 }
-
 .slide-caption {
     text-align: center; 
     color: #5F9EA0; 
     color: #1E90FF;
     font-size: 0.8em;
+}
+
+/* home page */
+.home-content-wrapper {
+    background-color: #4b2b3e; 
+}
+.home-img-row {
+    padding-top: 50px;
+    margin-top:20px;
+}
+
+.feature-row {
+    padding-top: 30px;
 }
