@@ -287,29 +287,30 @@ div.clear-float {
     color: #0099E6;
 }
 
-.blend-left {
+.xblend-left {
     -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
 
 }
-.blend-right {
+.xblend-right {
     width: 100%; 
     -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
 
 }
-.blend-img-right {
+.xblend-img-right {
     -webkit-filter: grayscale(100%);filter: grayscale(100%);
         opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 .hero-img-blend {
-    -webkit-filter: grayscale(100%);filter: grayscale(100%);
-        opacity: 0.8;
+    /* Create effect on hero image */
+    /*-webkit-filter: grayscale(100%);filter: grayscale(100%);*/
+    opacity: 0.8;
     filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
-/* Place text in the middle of the image */
 .hero-text {
+    /* Place text in the middle of the image */
     position: absolute;
     top: 50%;
     left: 50%;

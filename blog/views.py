@@ -43,13 +43,15 @@ def home(request):
 
 def index(request,
           tag_slug=None, cat_slug=None, arch_date=None, event_year=None):
-
-    context = {}
-    posts_context_dic = generate_sidebar_context(request, context,
-                                                 tag_slug, cat_slug, arch_date,
-                                                 event_year)
-    posts = posts_context_dic['posts']
-    context = posts_context_dic['context']
+    #
+    # ATTN!
+    # The sidebar context items, including context['posts'] is populated
+    # through genrate_sidebar().
+    # The 'posts' value however might be replaced in specific page views,
+    # such as post_page(), search().
+    context = generate_sidebar_context(request,
+                                       tag_slug, cat_slug, arch_date,
+                                       event_year)
 
     return render(request, 'blog/index.html', context)
 
@@ -57,6 +59,18 @@ def index(request,
 def post_page(request,
               post_slug, tag_slug=None, cat_slug=None, arch_date=None,
               event_year=None):
+
+    ##################
+    # For sidebar
+    ##################
+    # posts_context_dic = generate_sidebar_context(request, context,
+    #                                             tag_slug, cat_slug,
+    #                                             arch_date, event_year)
+    # posts = posts_context_dic['posts']
+    # context = posts_context_dic['context']
+    context = generate_sidebar_context(request,
+                                       tag_slug, cat_slug,
+                                       arch_date, event_year)
 
     # Get a post by slug
     # http://localhost:8000/blog/post/post-example-2
@@ -84,39 +98,40 @@ def post_page(request,
             match_tags = tags.filter(id=post.pk)
             setattr(post, 'tags', match_tags)
 
-            context = {
-                'post': post,
-                'comments': comments,
-                'new_comment': comment,
-            }
+            # Add page specific items to context
+            context['post'] = post
+            context['comments'] = comments
+            context['new_comments'] = comment
+            # context = {
+            #    'post': post,
+            #    'comments': comments,
+            #    'new_comment': comment,
+            # }
 
             return render(request, 'blog/post_page.html', context)
     else:
-        context = {
-            'post': post,
-            'comments': comments,
-            'image_url': image_obj.image,
-            'image_obj': image_obj,
-        }
 
-        ##################
-        # For sidebar
-        ##################
-        posts_context_dic = generate_sidebar_context(request, context,
-                                                     tag_slug, cat_slug,
-                                                     arch_date, event_year)
-        posts = posts_context_dic['posts']
-        context = posts_context_dic['context']
+        context['post'] = post
+        context['comments'] = comments
+        context['image_url'] = image_obj.image
+        context['image_obj'] = image_obj
+        # context = {
+        #    'post': post,
+        #    'comments': comments,
+        #    'image_url': image_obj.image,
+        #    'image_obj': image_obj,
+        # }
 
         return render(request, 'blog/post_page.html', context)
 
 
-def generate_sidebar_context(request, context,
+def generate_sidebar_context(request,
                              tag_slug=None, cat_slug=None, arch_date=None,
                              event_year=None):
     """Utility function that handels sidebar context."""
 
     posts = Post.objects.all()
+    context = {}
 
     # Tag search
     if tag_slug:
@@ -157,6 +172,8 @@ def generate_sidebar_context(request, context,
     # Not to use tags = Tag.objects.all() to get only tags that has Post assoc
     tags = Post.tags.all()
     post_items = get_post_items(posts)
+
+    # Pass filtered posts back to context 'posts'
     context['posts'] = post_items
 
     context['tags'] = tags
@@ -211,7 +228,8 @@ def generate_sidebar_context(request, context,
     # context['test'] = os.path.join(request.build_absolute_uri(
     #    reverse('index')), 'cat/')
 
-    return {'posts': posts, 'context': context}
+    # return {'posts': posts, 'context': context}
+    return context
 
 
 def get_post_items(posts):
@@ -253,23 +271,45 @@ def search(request):
         # AND content LIKE '%second_word%' AND content LIKE '%third_word%'
 
         # Append new reduce() for search fields
+        """
         results = posts.filter(
             reduce(operator.and_,
                    (Q(title__icontains=q) for q in query_tokens)) |
             reduce(operator.and_,
                    (Q(text__icontains=q) for q in query_tokens)) |
             reduce(operator.and_,
-                   (Q(tags__name__icontains=q)
-                    for q in query_tokens)) |
+                   (Q(tags__name__icontains=q) for q in query_tokens)) |
+        )
+        """
+        results = posts.filter(
+            # title
             reduce(operator.and_,
-                   (Q(image_set__title__icontains=q)
-                    for q in query_tokens)) |
+                   (Q(title__icontains=q) for q in query_tokens)) |
+            # text
+            reduce(operator.and_,
+                   (Q(text__icontains=q) for q in query_tokens)) |
+            # keywords
+            reduce(operator.and_,
+                   (Q(keywords__icontains=q) for q in query_tokens)) |
+            # tags
+            reduce(operator.and_,
+                   (Q(tags__name__icontains=q) for q in query_tokens)) |
+            # categories
+            reduce(operator.and_,
+                   (Q(categories__title__icontains=q) for q in query_tokens)) |
+
+            # image title
+            reduce(operator.and_,
+                   (Q(image_set__title__icontains=q) for q in query_tokens)) |
+            # image description
             reduce(operator.and_,
                    (Q(image_set__description__icontains=q)
                     for q in query_tokens)) |
+            # image legend
             reduce(operator.and_,
-                   (Q(image_set__legend__icontains=q)
-                    for q in query_tokens)) |
+                   (Q(image_set__legend__icontains=q) for q in query_tokens)) |
+
+            # image 2
             reduce(operator.and_,
                    (Q(image_set__img2_title__icontains=q)
                     for q in query_tokens)) |
@@ -279,6 +319,8 @@ def search(request):
             reduce(operator.and_,
                    (Q(image_set__img2_legend__icontains=q)
                     for q in query_tokens)) |
+
+            # image 3
             reduce(operator.and_,
                    (Q(image_set__img3_title__icontains=q)
                     for q in query_tokens)) |
@@ -291,6 +333,8 @@ def search(request):
             reduce(operator.and_,
                    (Q(image_set__img4_title__icontains=q)
                     for q in query_tokens)) |
+
+            # image 4
             reduce(operator.and_,
                    (Q(image_set__img4_description__icontains=q)
                     for q in query_tokens)) |
@@ -299,20 +343,51 @@ def search(request):
                     for q in query_tokens))
         )
 
+        # remove duplicates
+        results = list(set(results))
+
         post_items = get_post_items(results)
     else:
         post_items = []
 
-    context = {
-        'posts': post_items,
-        'query': query,
-    }
+    test = len(results)
+    test = len(post_items)
 
     ##################
     # For sidebar
     ##################
-    posts_context_dic = generate_sidebar_context(request, context)
-    posts = posts_context_dic['posts']
-    context = posts_context_dic['context']
+    # posts_context_dic = generate_sidebar_context(request, context)
+    # posts = posts_context_dic['posts']
+    # context = posts_context_dic['context']
+    context = generate_sidebar_context(request)
+
+    # Replace 'posts' and ddd page specific items to context
+    context['posts'] = post_items
+    context['query'] = query
+    context['searchtest'] = test
+
+    # context = {
+    #    'posts': post_items,
+    #    'query': query,
+    #    'searchtest': test
+    # }
 
     return render(request, 'blog/index.html', context)
+
+
+def aboutus(request):
+    mesg = 'The page is under construction.'
+    return HttpResponse(mesg)
+    # return render(request, 'blog/home.html', context)
+
+
+def authors(request):
+    mesg = 'The page is under construction.'
+    return HttpResponse(mesg)
+    # return render(request, 'blog/home.html', context)
+
+
+def archive(request):
+    mesg = 'The page is under construction.'
+    return HttpResponse(mesg)
+    # return render(request, 'blog/home.html', context)

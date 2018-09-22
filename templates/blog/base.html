@@ -35,13 +35,14 @@
         </button>
 
         <!-- Logo image and text -->
+        <a href="/blog">
         <IMG SRC="/media/images/blog/medsci_logo_v5_50x50.png" ALT="some text" class="logo"/>
-        <a class="navbar-brand" href="/blog">&nbsp;&nbspHome</a>
+        </a>
+        <a class="navbar-brand" href="/blog">&nbsp;&nbspAmazing Medical Stories</a>
 
         <!--
         <IMG SRC="{% static 'images/blog/medsci_icon_64x64.png' %}" ALT="some text" WIDTH=60 HEIGHT=40>
         -->
-
         <div class="collapse navbar-collapse" id="nav-content">
             <div class="container">
                 <!-- links -->
@@ -51,13 +52,16 @@
                             <li>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">link 1</a>
+                                <a class="nav-link" href="{% url 'blog' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">link 2</a>
+                                <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">link 3</a>
+                                <a class="nav-link" href="{% url 'authors' %}">Authors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'archive' %}">Archive</a>
                             </li>
                         </ul>
                     </div>
