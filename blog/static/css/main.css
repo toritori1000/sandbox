@@ -72,10 +72,9 @@ span {
 .index-img-col {
     font-size: 14px;
     color: white;
-    /* image frame */
+    /* define image frame (border) */
     border: 1px solid #5d4051; 
     background-color: #4b2b3e; 
-    
 }
 .index-img-col img {
      /* Space between cols depends on image size and col-# width. */ 
@@ -90,6 +89,7 @@ span {
   filter: alpha(opacity=80);
   opacity: .8;
 }
+
 .index-img-col .caption {
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     padding-left: 10px; 
@@ -101,11 +101,9 @@ span {
     font-size: 18px;
     text-align: center; 
 }
-.index-row {
-    margin-top:20px;
-    background-color: #4b2b3e; 
+.index-img-row {
+    margin-top: 50px;
 }
-
 
 /* post page title */
 .post-container {
@@ -120,6 +118,7 @@ span {
 .post-content {
     margin-left: 210px
 }
+
 
 .post-title {
    font-size: 16px;
@@ -254,7 +253,6 @@ div.clear-float {
     width: 100%; 
     height: 425px;
     padding: 0px 0px 20px 0px;
-    background-color: #4b2b3e; 
 }
 .hero-row {
     border-bottom: 1px solid #6e5564 !important; 
@@ -381,7 +379,7 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     box-shadow: inset 0 0 0.3em 0.3em lightgrey; 
 }
 .slide-show {
-    padding-top: 50px;
+    padding-top: 20px;
     background-color: #4b2b3e; 
 }
 .slide-container {
@@ -409,9 +407,8 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
 
 /* home page */
 .home-content-wrapper {
-    background-color: #4b2b3e; 
 }
-.home-img-row {
+.xxhome-img-row {
     padding-top: 50px;
     margin-top:20px;
 }

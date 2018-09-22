@@ -37,10 +37,6 @@ def home(request):
         'feature_posts': feature_posts,
     }
 
-    #test = home_post[0].slug
-    #test = "QQQQ"
-    #test = title_post[0]
-
     # return HttpResponse(test)
     return render(request, 'blog/home.html', context)
 
@@ -122,22 +118,31 @@ def generate_sidebar_context(request, context,
 
     posts = Post.objects.all()
 
+    # Tag search
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         posts = posts.filter(tags__in=[tag])
         context['tag'] = tag
 
+    # Category search
     if cat_slug:
         cat_ids = Category.objects.filter(
             slug=cat_slug).values_list('id', flat=True)
-        posts = posts.filter(id__in=cat_ids)
+        posts = posts.filter(categories__in=cat_ids)
         context['cat'] = cat_ids
 
+        # cat_ids = get_object_or_404(
+        #    Category, slug=cat_slug).values_list('id', flat=True)
+        test = len(cat_ids)
+        test = cat_slug
+
+    # Archive search
     if arch_date:
         ym = arch_date.split("-")
         posts = Post.objects.filter(created_date__year=ym[0],
                                     created_date__month=ym[1])
 
+    # Event year search
     if event_year:
         event_ids = EventDate.objects.filter(
             decade_by_five=event_year).values_list('id', flat=True)
@@ -272,7 +277,7 @@ def search(request):
                    (Q(image_set__img2_description__icontains=q)
                     for q in query_tokens)) |
             reduce(operator.and_,
-                   (Q(image_set__legend2__icontains=q)
+                   (Q(image_set__img2_legend__icontains=q)
                     for q in query_tokens)) |
             reduce(operator.and_,
                    (Q(image_set__img3_title__icontains=q)
@@ -281,7 +286,7 @@ def search(request):
                    (Q(image_set__img3_description__icontains=q)
                     for q in query_tokens)) |
             reduce(operator.and_,
-                   (Q(image_set__legend3__icontains=q)
+                   (Q(image_set__img3_legend__icontains=q)
                     for q in query_tokens)) |
             reduce(operator.and_,
                    (Q(image_set__img4_title__icontains=q)
@@ -290,7 +295,7 @@ def search(request):
                    (Q(image_set__img4_description__icontains=q)
                     for q in query_tokens)) |
             reduce(operator.and_,
-                   (Q(image_set__legend4__icontains=q)
+                   (Q(image_set__img4_legend__icontains=q)
                     for q in query_tokens))
         )
 
@@ -300,7 +305,7 @@ def search(request):
 
     context = {
         'posts': post_items,
-        'query': query
+        'query': query,
     }
 
     ##################

@@ -22,22 +22,20 @@
 </div>
 -->
 
-
-
 <div class="container">
-    <div class="row index-row">
+    <div class="row index-img-row">
         
         <div class="col-sm-9 col-md-9 col-lg-9">
 
             <!-- Display 3 image per row using 'columns' filter -->
             {% for row in posts|columns:3 %}
-                <div class="row row-no-padding">
+                <div class="row">
                     {% for post in row %}
-                        <div class="col-sm-6 col-md-4 col-lg-4 index-img-col">
+                        <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                             <!-- Image: size determins spacing between columns. -->
                             
                             {% thumbnail post.image_set.image "210x310" crop="center" as im %}
-                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="home-img" />
+                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="xhome-img" />
                             {% endthumbnail %}
 
                             <div class="caption">
@@ -71,7 +69,7 @@
     </div>
 </div>
 
-    <!-- Sidebar col-md-3 -->
+    <!-- footer col-md-3 -->
     {% include "includes/footer.html" %}
 
 {% endblock %}
