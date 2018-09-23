@@ -80,9 +80,6 @@ def post_page(request,
 
     image_obj = get_object_or_404(PostImage, id=post.image_set_id)
 
-    test = "WWWQQQ"
-    test = post.image_set_id
-
     if request.POST:
         comment = request.POST.get("comment")
 
@@ -102,11 +99,6 @@ def post_page(request,
             context['post'] = post
             context['comments'] = comments
             context['new_comments'] = comment
-            # context = {
-            #    'post': post,
-            #    'comments': comments,
-            #    'new_comment': comment,
-            # }
 
             return render(request, 'blog/post_page.html', context)
     else:
@@ -115,12 +107,6 @@ def post_page(request,
         context['comments'] = comments
         context['image_url'] = image_obj.image
         context['image_obj'] = image_obj
-        # context = {
-        #    'post': post,
-        #    'comments': comments,
-        #    'image_url': image_obj.image,
-        #    'image_obj': image_obj,
-        # }
 
         return render(request, 'blog/post_page.html', context)
 

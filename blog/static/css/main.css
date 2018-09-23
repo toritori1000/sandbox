@@ -36,6 +36,10 @@ span {
   padding-left:0px;
   padding-right:15px;
 }
+.a:hover, a:active, a:focus {
+  /* remove dotted border after link click */
+  outline: 0;
+}
 
 /* global search box */
 #search-box{
@@ -406,8 +410,7 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
 }
 .slide-caption {
     text-align: center; 
-    color: #5F9EA0; 
-    color: #1E90FF;
+    color: white;
     font-size: 0.8em;
 }
 
