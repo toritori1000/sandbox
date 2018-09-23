@@ -35,10 +35,12 @@
         </button>
 
         <!-- Logo image and text -->
-        <a href="/blog">
-        <IMG SRC="/media/images/blog/medsci_logo_v5_50x50.png" ALT="some text" class="logo"/>
-        </a>
-        <a class="navbar-brand" href="/blog">&nbsp;&nbspAmazing Medical Stories</a>
+        <div class="brand-wrapper">
+            <a href="/blog">
+                <IMG SRC="/media/images/blog/medsci_logo_v5_50x50.png" ALT="some text" class="logo" />
+            </a>
+            <a class="navbar-brand" href="/blog">&nbsp;&nbspAmazing Medical Stories</a>
+        </div>
 
         <!--
         <IMG SRC="{% static 'images/blog/medsci_icon_64x64.png' %}" ALT="some text" WIDTH=60 HEIGHT=40>
@@ -47,15 +49,16 @@
             <div class="container">
                 <!-- links -->
                 <div class="row">
-                    <div class="col-md-8 col-md-4">
+                    <div class="col-md-8 col-md-4 my-nav-col">
                         <ul class="navbar-nav">
-                            <li>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'blog' %}">Home</a>
+                            <li class="nav-item active home-item">
+                                <a class="nav-link" href="{% url 'home'%}">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'submit' %}">Submit</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'authors' %}">Authors</a>

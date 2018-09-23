@@ -23,6 +23,19 @@ span {
     border-bottom: 1px solid #6e5564 !important; 
     background-color: #4b2b3e !important; 
 }
+.navbar-brand {
+    color:  #d6d6d6 !important;
+    font-size: 18px;
+    font-weight: bold; 
+    
+}
+.my-nav-col {
+    padding-top: 3px !important;
+}
+.navbar-nav > li{
+  padding-left:0px;
+  padding-right:15px;
+}
 
 /* global search box */
 #search-box{
@@ -207,14 +220,6 @@ div.clear-float {
     opacity: 0.8;
 }
 
-/* blend mode */
-.hero-wrapper {
-    position: relative;
-    width: 100%; 
-    height: 350px;
-    padding: 20px 0px 20px 100px;
-    background-color: #4b2b3e; 
-}
 .image-blend {
     /* width: 50%; */
     width: 85%;     /* controls proportion of faded area. */
@@ -248,7 +253,7 @@ div.clear-float {
 /* ATTN!! Create picture frame like effect */
 
 /* blend mode */
-.hero-wrapper2 {
+.hero-wrapper {
     position: relative;
     width: 100%; 
     height: 425px;

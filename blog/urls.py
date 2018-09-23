@@ -6,7 +6,6 @@ urlpatterns = [
 
     # ATTN! include trailing slash. The default APPEND_SLASH=True in settings.
     path('', views.home, name='home'),
-    path('blog/', views.home, name='blog'),
     path('index/', views.index, name='index'),
     path('index/post/<post_slug>/', views.post_page, name='post_page'),
     path('index/tag/<tag_slug>/', views.index, name="post_by_tag"),
@@ -16,6 +15,7 @@ urlpatterns = [
     path('post/search/', views.search, name='search'),
 
     path('aboutus/', views.aboutus, name='aboutus'),
+    path('submit/', views.submit, name='submit'),
     path('authors/', views.authors, name='authors'),
     path('archive/', views.archive, name='archive'),
 

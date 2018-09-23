@@ -377,17 +377,32 @@ def search(request):
 
 def aboutus(request):
     mesg = 'The page is under construction.'
-    return HttpResponse(mesg)
-    # return render(request, 'blog/home.html', context)
+    # return HttpResponse(mesg)
+    context = {
+        'mesg': mesg,
+    }
+    return render(request, 'blog/aboutus.html', context)
+
+
+def submit(request):
+    mesg = 'The page is under construction.'
+    context = {
+        'mesg': mesg,
+    }
+    return render(request, 'blog/submit.html', context)
 
 
 def authors(request):
     mesg = 'The page is under construction.'
-    return HttpResponse(mesg)
-    # return render(request, 'blog/home.html', context)
+    context = {
+        'mesg': mesg,
+    }
+    return render(request, 'blog/authors.html', context)
 
 
 def archive(request):
     mesg = 'The page is under construction.'
-    return HttpResponse(mesg)
-    # return render(request, 'blog/home.html', context)
+    context = {
+        'mesg': mesg,
+    }
+    return render(request, 'blog/archive.html', context)
