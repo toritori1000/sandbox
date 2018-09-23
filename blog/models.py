@@ -353,6 +353,7 @@ class HomePost(models.Model):
     header_post = models.ForeignKey(Post, on_delete=models.CASCADE,
                                     related_name='header_post', null=True,
                                     blank=True)
+    # Alternative header post
     header_post_2 = models.ForeignKey(Post, on_delete=models.CASCADE,
                                       related_name='header_post_2', null=True,
                                       blank=True)

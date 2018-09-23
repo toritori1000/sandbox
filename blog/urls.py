@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('aboutus/', views.aboutus, name='aboutus'),
     path('submit/', views.submit, name='submit'),
-    path('authors/', views.authors, name='authors'),
+    path('contributors/', views.contributors, name='contributors'),
     path('archive/', views.archive, name='archive'),
 
 

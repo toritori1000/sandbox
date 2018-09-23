@@ -29,7 +29,7 @@
 
             <!-- Display 3 image per row using 'columns' filter -->
             {% for row in posts|columns:3 %}
-                <div class="row">
+                <div class="row posts-sub-row">
                     {% for post in row %}
                         <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                             <!-- Image: size determins spacing between columns. -->

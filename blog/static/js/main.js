@@ -1,11 +1,8 @@
 $(document).ready(function () {
 
     // nav-bar active link switch 
-    $.each($('.navbar').find('li'), function () {
-        $(this).toggleClass('active',
-            // redirect to destination of original click 
-            window.location.pathname.indexOf($(this).find('a').attr('href')) > -1);
-    });
+    $('.navbar-nav li.active').removeClass('active');
+    $('.nav-item a[href="' + location.pathname + '"]').closest('li').addClass('active');
 
     $('#recipeCarousel').carousel({
         //interval: 10000

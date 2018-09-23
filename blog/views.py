@@ -10,7 +10,6 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.utils import timezone
 
-
 from django.core.paginator import Paginator
 from django.db.models.query import prefetch_related_objects
 from django.db.models import Q
@@ -29,12 +28,17 @@ def home(request):
     header_post_2 = Post.objects.filter(id=header_post_2_id)
     feature_posts = home_post[0].feature_posts.all()
 
+    # Get most recent 6 posts of each category
+    # Note: prepend '-' to get last 6, then filip the order by reversed()
+    recent_posts = reversed(Post.objects.all().order_by('-created_date')[0:6])
+
     # ATTN!!: header image needs to be a long image width > 300px
     context = {
         'home_post': home_post[0],
         'header_post': header_post[0],
         'header_post_2': header_post_2[0],
         'feature_posts': feature_posts,
+        'recent_posts': recent_posts
     }
 
     # return HttpResponse(test)
@@ -378,12 +382,12 @@ def submit(request):
     return render(request, 'blog/submit.html', context)
 
 
-def authors(request):
+def contributors(request):
     mesg = 'The page is under construction.'
     context = {
         'mesg': mesg,
     }
-    return render(request, 'blog/authors.html', context)
+    return render(request, 'blog/contributors.html', context)
 
 
 def archive(request):

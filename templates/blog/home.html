@@ -28,7 +28,7 @@
    <!-- the wrapper provides content background color --> 
 
     <div class="container slide-show">
-        <div class="row xmx-auto xmy-auto">
+        <div class="row">
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
                 <div class="carousel-inner w-100" role="listbox">
                     <div class="carousel-item active">
@@ -57,7 +57,7 @@
                                 </a>
                             
                             {% endthumbnail %}
-                            
+
                             <p class='slide-caption'>
                                 <a href="{{ post.url }}/index/post/{{ post.slug }}">
                                 {{post.thumbnail_title|truncatewords:5}}
@@ -85,13 +85,13 @@
     
     <div class="container">
     
-        <div class="row xhome-img-row">
+        <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
     
     
                 <!-- Display 3 image per row using 'columns' filter -->
-                {% for row in feature_posts|columns:4 %}
-                    <div class="row feature-row">
+                {% for row in recent_posts|columns:4 %}
+                    <div class="row posts-sub-row">
                         {% for post in row %}
                             <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                                 <!-- Use 3:4 of w:h for fix size image -->
@@ -110,6 +110,10 @@
                                             {{ post.text|truncatewords:25 }}
                                             <!-- compose post url -->
                                             <a href="{{ post.url }}/index/post/{{ post.slug }}" class="btn btn-default btn-sm">More ...</a>
+
+                                            <!-- 
+                                            Created date: {{ post.created_date }}
+                                            -->
                                         </p>
                                     </div>
                                 </div>
