@@ -34,9 +34,22 @@ Navbar
   padding-left:0px;
   padding-right:15px;
 }
-.a:hover, a:active, a:focus {
+.navbar-nav .a:hover, a:active, a:focus {
   /* remove dotted border after link click */
   outline: 0;
+}
+.nav-link {
+    color: #d8ebff !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+.nav-link:hover {
+    color: #0f0 !important;
+    color: #4ca6ff !important;
+}
+.navbar-nav .active .nav-link {
+    color: #4ca6ff !important;
+
 }
 /* 
 Navbar-brand 
