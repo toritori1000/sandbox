@@ -6,22 +6,6 @@
 
 {% block content %}
 
-<!--
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Bootstrap 4 (from index.html)</h1>
-                <p>This is some text</p>
-                <p>This is some text</p>
-                <p>This is some text</p>
-                <a href="#" class="btn btn-primary btn-lg">More...</a>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 <div class="container">
     <div class="row index-img-row">
         
@@ -29,7 +13,7 @@
 
             <!-- Display 3 image per row using 'columns' filter -->
             {% for row in posts|columns:3 %}
-                <div class="row posts-sub-row">
+                <div class="row post-sub-row">
                     {% for post in row %}
                         <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                             <!-- Image: size determins spacing between columns. -->

@@ -27,6 +27,7 @@
 <div class="home-content-wrapper">
    <!-- the wrapper provides content background color --> 
 
+    <!-- Slide Show -->
     <div class="container slide-show">
         <div class="row">
             <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
@@ -81,17 +82,16 @@
     </div>
     
     
-    
-    
     <div class="container">
     
-        <div class="row">
+        <!--Recent Post -->
+        <div class="row post-row">
             <div class="col-sm-12 col-md-12 col-lg-12">
     
     
                 <!-- Display 3 image per row using 'columns' filter -->
                 {% for row in recent_posts|columns:4 %}
-                    <div class="row posts-sub-row">
+                    <div class="row post-sub-row">
                         {% for post in row %}
                             <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                                 <!-- Use 3:4 of w:h for fix size image -->
@@ -132,7 +132,16 @@
             -->
         </div>
     </div>
-<!-- container -->
+    <!-- container -->
+
+    <!-- Inline category links -->
+    <div class="container cat-inline">
+        <ul class="list-inline">
+            {% for category in categories %}
+            <li class="list-inline-item"><a href="{% url 'index' %}cat/{{ category.slug }}"  role="button">{{ category.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 <!-- content-wrapper -->
 

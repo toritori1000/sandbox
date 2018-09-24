@@ -14,11 +14,9 @@ span {
     overflow: hidden
 }
 
-.jumbotron {
-    padding: 5em inherit;
-}
-
-/* navbar color and border */
+/* 
+Navbar 
+*/
 .navbar {
     border-bottom: 1px solid #6e5564 !important; 
     background-color: #4b2b3e !important; 
@@ -40,14 +38,25 @@ span {
   /* remove dotted border after link click */
   outline: 0;
 }
-
-/* global search box */
+/* 
+Navbar-brand 
+*/
+.navbar-brand:hover {
+    opacity: 0.8 !important;
+}
+.logo:hover {
+    color: #58B8EF  !important;
+    opacity: 0.8;
+}
+/* 
+Global search box 
+*/
 #search-box{
     color: lightgrey;
     background-color: #432637;
 }
-/* custom search box border color */
 .input-group-addon {
+    /* custom search box border color */
     border: solid 1px #666666;
     border-radius: 4px;
 }
@@ -56,7 +65,9 @@ span {
 }
 
 
-/* custom side-bar items */ 
+/* 
+Side-bar items 
+*/ 
 .side-bar {
     background-color: #f9fbfc; 
 }
@@ -85,7 +96,9 @@ span {
 }
 
 
-/* home, index page image section */
+/* 
+Image section for Home and Index pages 
+*/
 .index-img-col {
     font-size: 14px;
     color: white;
@@ -106,7 +119,6 @@ span {
   filter: alpha(opacity=80);
   opacity: .8;
 }
-
 .index-img-col .caption {
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     padding-left: 10px; 
@@ -122,7 +134,9 @@ span {
     margin-top: 50px;
 }
 
-/* post page title */
+/* 
+Post page 
+*/
 .post-container {
     margin: 20px 20px 0 0;  
     border: 5px solid #333;
@@ -135,8 +149,6 @@ span {
 .post-content {
     margin-left: 210px
 }
-
-
 .post-title {
    font-size: 16px;
    text-align: center;
@@ -181,17 +193,14 @@ blockquote p {
   display: inline;
 }
 
-
-/* post page image */
+/* 
+Post page image 
+*/
 .post-page-img {
     font-size: 14px;
     color: white;
     color: black;
     min-height: 350px; /* im.height + 50px */ 
-    /*
-    padding: 0px 0px 15px 30px;
-    background-color: #4b2b3e; 
-    */
 }
 .post-page-img img {
     border-width: 1px; 
@@ -214,49 +223,18 @@ div.clear-float {
     padding-top: 20px;
     padding-right: 30px;
 }
-
-/* Customize bootstrap navbar-brand */
-.navbar-brand:hover {
-    opacity: 0.8 !important;
+.post-append > div {
+    /* reduce space between text line */
+    line-height:0 !important;
+    /* background-color: red !important; */
 }
-.logo:hover {
-    color: #58B8EF  !important;
-    opacity: 0.8;
-}
-
-.image-blend {
-    /* width: 50%; */
-    width: 85%;     /* controls proportion of faded area. */
-    height: 300px;
-    background-color: #4b2b3e; /* without top grey freame edge */ 
-    background-color: grey;   /* with top grey frame-edge */
-    /*
-     -webkit-mask: linear-gradient(90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
-     */
-     -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
+.post-append .keyword {
+   padding-top: 10px; 
 }
 
-
-/* ATTN!! Create picture frame like effect */
-.frame-effect {
-    border: 1px solid lightgrey; 
-    /*
-    border-width: 1px; 
-    border-color: lightgrey; 
-    border-style: solid; 
-    */
-    padding: 3px; 
-    margin: 5px 20px 5px 2px; 
-
-    /* Create frame like image border */
-    background-color: lightgrey; 
-    padding: 1em; 
-    box-shadow: inset 0 0 1em 1em lightgrey; 
-}
-
-/* ATTN!! Create picture frame like effect */
-
-/* blend mode */
+/* 
+Home page hero header
+*/
 .hero-wrapper {
     position: relative;
     width: 100%; 
@@ -266,8 +244,8 @@ div.clear-float {
 .hero-row {
     border-bottom: 1px solid #6e5564 !important; 
 }
-/* Crop hero image */
 .hero-thumbnail {
+ /* Crop hero image */
   position: relative;
   width: 1300px;
   height: 400px;
@@ -288,36 +266,18 @@ div.clear-float {
   width: 100%;
   height: auto;
 }
-
 #hero-text-left {
     color: red; 
 }
 #hero-text-right {
     color: #0099E6;
 }
-
-.xblend-left {
-    -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
-
-}
-.xblend-right {
-    width: 100%; 
-    -webkit-mask: linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 50%);
-
-}
-.xblend-img-right {
-    -webkit-filter: grayscale(100%);filter: grayscale(100%);
-        opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-}
-
 .hero-img-blend {
     /* Create effect on hero image */
     /*-webkit-filter: grayscale(100%);filter: grayscale(100%);*/
     opacity: 0.8;
     filter: alpha(opacity=80); /* For IE8 and earlier */
 }
-
 .hero-text {
     /* Place text in the middle of the image */
     position: absolute;
@@ -325,7 +285,6 @@ div.clear-float {
     left: 50%;
     text-align: center;
     transform: translate(-50%, -50%);
-    
     background-color: black; 
     color: white; 
     font-weight: 700;
@@ -336,17 +295,10 @@ div.clear-float {
     filter: alpha(opacity=60); /* For IE8 and earlier */
     border-radius: 25px;
 }
-.gallery {
-  width: 30%; /* how much % image overlapping */
-  padding: 0vw;
-  margin: 3%;
-  border-radius: 5vw;
-  display: flex;
-  flex-direction: row;
-  margin-left: 5%
-}
-
-/* BootsTrap carousel */
+/* 
+Home page slide-show
+BootsTrap carousel 
+*/
 .carousel-inner .carousel-item.active,
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
@@ -413,15 +365,51 @@ fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
     color: white;
     font-size: 0.8em;
 }
-
-/* home page */
-.home-content-wrapper {
+.slide-caption a:hover {
+  color: #3299ff;
 }
-.xxhome-img-row {
-    padding-top: 50px;
-    margin-top:20px;
-}
-
-.posts-sub-row {
+/* 
+Home rows 
+*/
+.post-row {
     padding-top: 30px;
+}
+.post-sub-row {
+    padding-bottom: 30px;
+}
+.cat-inline {
+    background-color: #4b2b3e; 
+    /* center content */
+    margin-right: 0 auto;
+    margin-left: 0 auto;
+    text-align:center;
+}
+.cat-inline ul {
+    padding: 10px 0px 10px 0px;
+}
+.cat-inline a {
+    display: inline-block;
+}
+.cat-inline a:hover {
+  color: #3299ff;
+}
+.cat-inline ul li:after {
+    margin-left: 12px;
+    color: #cccccc;
+    content: "|";
+}
+.cat-inline ul li:last-child:after {
+    content: "";
+}
+.caption .text a:hover {
+    /* mouse-over caption text 'More ...' */
+    color: #3299ff;
+}
+
+/* 
+Footer 
+*/
+.page-footer {
+    margin-top: 30px;
+    background-color: #f2f2f2;
 }
