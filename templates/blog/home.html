@@ -97,7 +97,7 @@
                                 <!-- Use 3:4 of w:h for fix size image -->
                                 {% thumbnail post.image_set.image "270x360" crop="center" as im %}
                                 <a href="{{ post.url }}/index/post/{{ post.slug }}">
-                                </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="xxhome-img" />
+                                </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}"/>
                                 </a>
                                 {% endthumbnail %}
 
