@@ -11,7 +11,8 @@
             <div class="col-md-12">
                 <div class="hero-thumbnail">
                     {% thumbnail header_post.image_set.image "1200x350" crop='center' as im %}
-                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="blur-effect hero-img-blend" />{% endthumbnail %}
+                    <img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="hero-img-blend" />
+                    {% endthumbnail %}
                 </div>
             </div>
         </div>

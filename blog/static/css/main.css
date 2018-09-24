@@ -261,9 +261,11 @@ Home page hero header
  /* Crop hero image */
   position: relative;
   width: 1300px;
+  width: 100%; 
   height: 400px;
-  right: 100px;
+  /*right: 100px;*/
   overflow: hidden;
+
 }
 .hero-thumbnail img {
   position: absolute;
@@ -272,18 +274,12 @@ Home page hero header
   height: 100%;
   width: auto;
   -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
 }
 .hero-thumbnail img.portrait {
   width: 100%;
   height: auto;
-}
-#hero-text-left {
-    color: red; 
-}
-#hero-text-right {
-    color: #0099E6;
 }
 .hero-img-blend {
     /* Create effect on hero image */
