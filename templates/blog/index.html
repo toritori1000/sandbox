@@ -6,48 +6,38 @@
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Bootstrap 4 (from index.html)</h1>
-                <p>This is some text</p>
-                <p>This is some text</p>
-                <p>This is some text</p>
-                <a href="#" class="btn btn-primary btn-lg">More...</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="container">
-    <div class="row top-buffer">
+    <div class="row index-img-row">
         
         <div class="col-sm-9 col-md-9 col-lg-9">
 
             <!-- Display 3 image per row using 'columns' filter -->
             {% for row in posts|columns:3 %}
-                <div class="row row-no-padding">
+                <div class="row post-sub-row">
                     {% for post in row %}
-                        <div class="col-sm-6 col-md-4 col-lg-4 img-col">
+                        <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
                             <!-- Image: size determins spacing between columns. -->
-                            {% thumbnail post.image_set.image "210x210" crop="center" as im %}
-                            </figure><img src="{{im.url}}" align="left" height="{{im.height}}" width="{{im.width}}" class="blog-img-left" />{% endthumbnail %}
-                            <p>
-                                <span class="img-title">{{ post.title }}</span>
-                            </p>
-                            <p>
-                                {{ post.text|truncatewords:25 }}
-                                <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
-                               
-                                MMMM
-                                {{ post.event_date }}
-                                FFFF
+                            
+                            {% thumbnail post.image_set.image "210x310" crop="center" as im %}
+                            </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="xhome-img" />
+                            {% endthumbnail %}
 
-                            </p>
+                            <div class="caption">
+
+                                <div class="title">
+                                    {{ post.title }}
+                                </div>
+                                <div class="text">
+                                    <p>
+                                        {{ post.text|truncatewords:25 }}
+                                        <a href="{{ post.url }}" class="btn btn-default btn-sm">More ...</a>
+                                    </p>
+                                </div>
+                            </div>
 
 
+                            <!--
+                            -->
 
                             <!--
                             <img src="{{post.image_set.image.url}}" height="220px" width="220px" class="xblog-img-left"/>
@@ -62,5 +52,8 @@
         {% include "includes/sidebar.html" %}
     </div>
 </div>
+
+    <!-- footer col-md-3 -->
+    {% include "includes/footer.html" %}
 
 {% endblock %}

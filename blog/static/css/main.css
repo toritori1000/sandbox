@@ -2,12 +2,8 @@ body {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-top: 0;
     padding-bottom: 0;
-    /*color: #7c7c7c;*/
+    /*background-color: #4b2b3e;*/ 
     background-color: #ECECEA;
-}
-
-.top-buffer {
-    margin-top:20px;
 }
 
 span {
@@ -18,34 +14,63 @@ span {
     overflow: hidden
 }
 
-.jumbotron {
-    padding: 5em inherit;
+/* 
+Navbar 
+*/
+.navbar {
+    border-bottom: 1px solid #6e5564 !important; 
+    background-color: #4b2b3e !important; 
+}
+.navbar-brand {
+    color:  #d6d6d6 !important;
+    font-size: 18px;
+    font-weight: bold; 
+    
+}
+.my-nav-col {
+    padding-top: 3px !important;
+}
+.navbar-nav > li{
+  padding-left:0px;
+  padding-right:15px;
+}
+.a:hover, a:active, a:focus {
+  /* remove dotted border after link click */
+  outline: 0;
+}
+/* 
+Navbar-brand 
+*/
+.navbar-brand:hover {
+    opacity: 0.8 !important;
+}
+.logo:hover {
+    color: #58B8EF  !important;
+    opacity: 0.8;
+}
+/* 
+Global search box 
+*/
+#search-box{
+    color: lightgrey;
+    background-color: #432637;
+}
+.input-group-addon {
+    /* custom search box border color */
+    border: solid 1px #666666;
+    border-radius: 4px;
+}
+.form-control {
+    border: solid 1px #4b2b3e; 
 }
 
-.post {
-   font-size: 16px;
-}
 
-.img-fluid {
-    max-width: 250px;
-    padding-bottom: 20px;
+/* 
+Side-bar items 
+*/ 
+.side-bar {
+    background-color: #f9fbfc; 
 }
-
-.img-box {
-    background-color: white;
-    max-width: 250px;
-    height:100%;
-
-}
-
-.img-thumnail {
-    float: left; 
-}
-.img-text {
-    color: red;
-    float: right; 
-}
-
 .custom-tag {
     color: tomato;
     /* wrap button text */
@@ -53,7 +78,6 @@ span {
     word-wrap: break-word;
     border: 1px solid white;
 }
-
 .custom-cat {
     color: #009900;
     /* wrap button text */
@@ -61,39 +85,58 @@ span {
     word-wrap: break-word;
     border: 1px solid white;
 }
-
 .custom-arch {
     font-size: 13px;
 }
-
 .custom-event {
     font-size: 13px;
 }
-
 .custom-tag:hover, .custom-cat:hover {
     background-color: #D4E6F1;
 }
 
-.blog-img-left { 
-    border-width: 1px; 
-    border-color: grey; 
-    border-style: solid; 
-    padding: 3px; 
-    margin: 5px 20px 5px 2px; 
-} 
 
-.blog-img-right { 
-    border-width: 1px; 
-    border-color: grey; 
-    border-style: solid; 
-    padding: 3px; 
-    margin: 5px 2px 5px 20px; 
-} 
-
-.side-bar {
-    background-color: #f9fbfc; 
+/* 
+Image section for Home and Index pages 
+*/
+.index-img-col {
+    font-size: 14px;
+    color: white;
+    /* define image frame (border) */
+    border: 1px solid #5d4051; 
+    background-color: #4b2b3e; 
+}
+.index-img-col img {
+     /* Space between cols depends on image size and col-# width. */ 
+    /* center the image */ 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+.index-img-col  img:hover {
+  filter: alpha(opacity=80);
+  opacity: .8;
+}
+.index-img-col .caption {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+.index-img-col .title {
+    margin-bottom: 5px;
+    color: sandybrown; 
+    font-size: 18px;
+    text-align: center; 
+}
+.index-img-row {
+    margin-top: 50px;
 }
 
+/* 
+Post page 
+*/
 .post-container {
     margin: 20px 20px 0 0;  
     border: 5px solid #333;
@@ -103,46 +146,270 @@ span {
     font-size: 14px;
     padding: 5px 40px 5px 10px;
 }
-.post-thumb {
-    float: left
-}
-.post-thumb img {
-    display: block
-}
 .post-content {
     margin-left: 210px
 }
 .post-title {
+   font-size: 16px;
+   text-align: center;
+   padding-right: 100px; 
+}
+.post-text {
+    padding-right: 30px;
+}
+.post-title p {
     font-weight: bold;
     font-size: 200%
 }
-.img-col {
+.post-highlight {
+    color: green;
+    font-size: 120%
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote:after {
+  color: #ccc;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
+
+/* 
+Post page image 
+*/
+.post-page-img {
     font-size: 14px;
-    color: black;
     color: white;
-    border: 2px solid white;
-    padding: 5px 5px 5px 10px;
-    background-color: #306754;
-    background-color: #7F462C; 
-    background-color: #0C090A; 
-    background-color: #141517;
-    background-color: #1E1F21;
-    background-color: #323335; 
-    background-color: #6799A3; 
-    background-color: #1f5846; 
-    background-color: #393d40; 
-    background-color: #371729; 
-    background-color: #5e4553; 
+    color: black;
+    min-height: 350px; /* im.height + 50px */ 
+}
+.post-page-img img {
+    border-width: 1px; 
+    border-color: grey; 
+    border-style: solid; 
+    padding: 3px; 
+    margin: 25px 25px 30px 20px;
+}
+.post-img-right { 
+    float: right;    
+} 
+.post-img-left { 
+    float: left;    
+} 
+div.clear-float {
+    clear: left; 
+    margin: 20px;
+}
+.post-page-img .caption {
+    padding-top: 20px;
+    padding-right: 30px;
+}
+.post-append > div {
+    /* reduce space between text line */
+    line-height:0 !important;
+    /* background-color: red !important; */
+}
+.post-append .keyword {
+   padding-top: 10px; 
+}
+
+/* 
+Home page hero header
+*/
+.hero-wrapper {
+    position: relative;
+    width: 100%; 
+    height: 425px;
+    padding: 0px 0px 20px 0px;
+}
+.hero-row {
+    border-bottom: 1px solid #6e5564 !important; 
+}
+.hero-thumbnail {
+ /* Crop hero image */
+  position: relative;
+  width: 1300px;
+  height: 400px;
+  right: 100px;
+  overflow: hidden;
+}
+.hero-thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.hero-thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
+#hero-text-left {
+    color: red; 
+}
+#hero-text-right {
+    color: #0099E6;
+}
+.hero-img-blend {
+    /* Create effect on hero image */
+    /*-webkit-filter: grayscale(100%);filter: grayscale(100%);*/
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+.hero-text {
+    /* Place text in the middle of the image */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    background-color: black; 
+    color: white; 
+    font-weight: 700;
+    line-height: 1.5em;
+    padding: 20px;
+
+    opacity: 0.7;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    border-radius: 25px;
+}
+/* 
+Home page slide-show
+BootsTrap carousel 
+*/
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  transform: translateX(25%);
+}
+.carousel-inner .carousel-item-left.active, 
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-25%);
+}
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+/* Change slide show arrow to #ff0347 (tomato) or #00ffff (cyan), the color 
+good for both dark and light background. 
+/* The solution below works for bootstrap4 only. Replacing 'fff' in 
+fill='$23fff' with a hex code without #. For example, fill='$2300ffff'.
+*/ 
+.carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6347' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff6347' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+.slide-img-frame {
+    border-width: 1px; 
+    border-color: lightgrey; 
+    border-style: solid; 
+    padding: 3px; 
+    /*margin: 5px 20px 5px 2px;*/ 
+    margin-left: 15px;
+
+    /* Create frame like image border */
+    background-color: lightgrey; 
+    padding: 0.3em; 
+    box-shadow: inset 0 0 0.3em 0.3em lightgrey; 
+}
+.slide-show {
+    padding-top: 20px;
     background-color: #4b2b3e; 
 }
-
-.img-col:hover {
-  opacity: 0.8;
+.slide-container {
+    /* The is necessary to avoid the lapsed image effect during slide shift */
+    /* background-color: #ECECEA; /* use body or whatever parent bk color */
+    background-color: #4b2b3e; 
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background-color: white; 
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+.slide-caption {
+    text-align: center; 
+    color: white;
+    font-size: 0.8em;
+}
+.slide-caption a:hover {
+  color: #3299ff;
+}
+/* 
+Home rows 
+*/
+.post-row {
+    padding-top: 30px;
+}
+.post-sub-row {
+    padding-bottom: 30px;
+}
+.cat-inline {
+    background-color: #4b2b3e; 
+    /* center content */
+    margin-right: 0 auto;
+    margin-left: 0 auto;
+    text-align:center;
+}
+.cat-inline ul {
+    padding: 10px 0px 10px 0px;
+}
+.cat-inline a {
+    display: inline-block;
+}
+.cat-inline a:hover {
+  color: #3299ff;
+}
+.cat-inline ul li:after {
+    margin-left: 12px;
+    color: #cccccc;
+    content: "|";
+}
+.cat-inline ul li:last-child:after {
+    content: "";
+}
+.caption .text a:hover {
+    /* mouse-over caption text 'More ...' */
+    color: #3299ff;
 }
 
-
- .img-title {
-      font-size: 24px;
-      font-family: 'Raleway',sans-serif;
+/* 
+Footer 
+*/
+.page-footer {
+    margin-top: 30px;
+    background-color: #f2f2f2;
 }
-

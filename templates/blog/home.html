@@ -1,0 +1,154 @@
+{% extends "blog/base.html" %} 
+{% load static %} 
+{% load thumbnail %} 
+{% load split_list %} 
+
+
+{% block content %}
+
+    <div class="hero-wrapper">
+        <div class="row hero-row">
+            <div class="col-md-12">
+                <div class="hero-thumbnail">
+                    {% thumbnail header_post.image_set.image "1200x350" crop='center' as im %}
+                    </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="blur-effect hero-img-blend" />{% endthumbnail %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-text">
+            <h1>Amazing Medical Stories</h1>
+        </div>
+    </div>
+
+<!-- Slide show with BootsTrap carousel -->
+<!-- https://www.codeply.com/go/3EQkUOhhZz -->
+
+<div class="home-content-wrapper">
+   <!-- the wrapper provides content background color --> 
+
+    <!-- Slide Show -->
+    <div class="container slide-show">
+        <div class="row">
+            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner w-100" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="slide-container">
+                            {% thumbnail header_post.image_set.image "x200" as im %}
+                                <a href="{{ header_post.url }}/index/post/{{ header_post.slug }}">
+                                <img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"/>
+                                </a>
+                            {% endthumbnail %}
+
+                            <p class='slide-caption'>
+                                <a href="{{ header_post.url }}/index/post/{{ header_post.slug }}">
+                                {{header_post.thumbnail_title|truncatewords:5}}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    {% for post in feature_posts %}
+                        <div class="carousel-item">
+                            <div class="slide-container">
+                            {% thumbnail post.image_set.image "x200" as im %}
+
+                                <a href="{{ post.url }}/index/post/{{ post.slug }}">
+                                    <img  src="{{im.url}}" height="{{im.height}}" width="{{im.width}}" class="header-img slide-img-frame"
+                                    />
+                                </a>
+                            
+                            {% endthumbnail %}
+
+                            <p class='slide-caption'>
+                                <a href="{{ post.url }}/index/post/{{ post.slug }}">
+                                {{post.thumbnail_title|truncatewords:5}}
+                                </a>
+                            </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+                <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+    
+        <!--Recent Post -->
+        <div class="row post-row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+    
+    
+                <!-- Display 3 image per row using 'columns' filter -->
+                {% for row in recent_posts|columns:4 %}
+                    <div class="row post-sub-row">
+                        {% for post in row %}
+                            <div class="col-sm-4 col-md-4 col-lg-4 index-img-col">
+                                <!-- Use 3:4 of w:h for fix size image -->
+                                {% thumbnail post.image_set.image "270x360" crop="center" as im %}
+                                <a href="{{ post.url }}/index/post/{{ post.slug }}">
+                                </figure><img src="{{im.url}}" height="{{im.height}}" width="{{im.width}}"/>
+                                </a>
+                                {% endthumbnail %}
+
+                                <div class="caption">
+                                    <div class="title">
+                                        {{ post.title }}
+                                    </div>
+                                    <div class="text">
+                                        <p>
+                                            {{ post.text|truncatewords:25 }}
+                                            <!-- compose post url -->
+                                            <a href="{{ post.url }}/index/post/{{ post.slug }}" class="btn btn-default btn-sm">More ...</a>
+
+                                            <!-- 
+                                            Created date: {{ post.created_date }}
+                                            -->
+                                        </p>
+                                    </div>
+                                </div>
+    
+    
+                                <!--
+                                <img src="{{post.image_set.image.url}}" height="220px" width="220px" class="xblog-img-left"/>
+                                -->
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <!-- Sidebar col-md-3 
+            -->
+        </div>
+    </div>
+    <!-- container -->
+
+    <!-- Inline category links -->
+    <div class="container cat-inline">
+        <ul class="list-inline">
+            {% for category in categories %}
+            <li class="list-inline-item"><a href="{% url 'index' %}cat/{{ category.slug }}"  role="button">{{ category.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<!-- content-wrapper -->
+
+
+    <!-- Sidebar col-md-3 -->
+    {% include "includes/footer.html" %}
+
+
+
+{% endblock %}

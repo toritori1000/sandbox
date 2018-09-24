@@ -13,50 +13,75 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <!-- Font-awesome -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        {% block header %}
-        {% endblock %}
+
+        <!-- tether.js needs to be placed bfore bootstrp.js 
+        <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script> 
+        -->
+        <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
+        
     </head>
 
 
     <body>
     <!-- YOUR CONTENT STARTS HERE -->
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background: DarkSlateGray;">
+    <!-- Navigation 
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background: #4b2b3e;">
+    -->
+    <nav class="navbar navbar-expand-sm navbar-dark" >
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- brand -->
-        <a class="navbar-brand" href="/blog">Blog</a>
+        <!-- Logo image and text -->
+        <div class="brand-wrapper">
+            <a href="/blog">
+                <IMG SRC="/media/images/blog/medsci_logo_v5_50x50.png" ALT="some text" class="logo" />
+            </a>
+            <a class="navbar-brand" href="/blog">&nbsp;&nbspAmazing Medical Stories</a>
+        </div>
 
+        <!--
+        <IMG SRC="{% static 'images/blog/medsci_icon_64x64.png' %}" ALT="some text" WIDTH=60 HEIGHT=40>
+        -->
         <div class="collapse navbar-collapse" id="nav-content">
             <div class="container">
                 <!-- links -->
                 <div class="row">
-                    <div class="col-md-8 col-md-4">
+                    <div class="col-md-8 col-md-4 my-nav-col">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">link 1</a>
+                            <li class="nav-item active home-item">
+                                <a class="nav-link" href="{% url 'home'%}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">link 2</a>
+                                <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">link 3</a>
+                                <a class="nav-link" href="{% url 'submit' %}">Submit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contributors' %}">Contributors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'archive' %}">Archive</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-md-4 col-sm-2">
                         <form id="search-form" action="{% url 'search' %}" method="get" accept-charset="utf-8">
-                            <div class="input-group">
-                                <input class="form-control bg-light order-secondary py-2" id="search-box" type="search"
+                            <div class="input-group input-group-addon">
+                                <input class="form-control order-secondary py-2" id="search-box" type="search"
                                        name="q" value="{{ query }}" placeholder="Search ...">
+
+                                <!--
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="submit">
                                         <i class="fa fa-search" style="color:#d9534f;"></i>
                                     </button>
                                 </div>
+                                -->
                             </div>
                         </form>
 
@@ -84,5 +109,6 @@
 
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     </body>
 </html>

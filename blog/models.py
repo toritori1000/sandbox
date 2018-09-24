@@ -51,6 +51,9 @@ class PostImage(models.Model):
         upload_to=os.path.join('images', 'blog'))
     title = models.CharField(max_length=255)
     legend = models.TextField(blank=True, null=True)
+    use_right_info = models.TextField(blank=True, null=True)
+    blockquote = models.TextField(blank=True, null=True)
+
     description = models.TextField()
     external_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -76,7 +79,9 @@ class PostImage(models.Model):
     img2 = models.ImageField(
         upload_to=os.path.join('images', 'blog'), blank=True, null=True)
     img2_title = models.TextField(blank=True, null=True)
-    legend2 = models.TextField(blank=True, null=True)
+    img2_legend = models.TextField(blank=True, null=True)
+    img2_use_right_info = models.TextField(blank=True, null=True)
+    img2_blockquote = models.TextField(blank=True, null=True)
     img2_description = models.TextField(blank=True, null=True)
     img2_external_url = models.URLField(blank=True, null=True)
     img2_created_at = models.DateTimeField(auto_now_add=True, blank=True,
@@ -100,7 +105,9 @@ class PostImage(models.Model):
     img3 = models.ImageField(
         upload_to=os.path.join('images', 'blog'), blank=True, null=True)
     img3_title = models.TextField(blank=True, null=True)
-    legend3 = models.TextField(blank=True, null=True)
+    img3_legend = models.TextField(blank=True, null=True)
+    img3_use_right_info = models.TextField(blank=True, null=True)
+    img3_blockquote = models.TextField(blank=True, null=True)
     img3_description = models.TextField(blank=True, null=True)
     img3_external_url = models.URLField(blank=True, null=True)
     img3_created_at = models.DateTimeField(auto_now_add=True, blank=True,
@@ -123,7 +130,9 @@ class PostImage(models.Model):
     #
     img4 = models.ImageField(
         upload_to=os.path.join('images', 'blog'), blank=True, null=True)
-    legend4 = models.TextField(blank=True, null=True)
+    img4_legend = models.TextField(blank=True, null=True)
+    img4_use_right_info = models.TextField(blank=True, null=True)
+    img4_blockquote = models.TextField(blank=True, null=True)
     img4_title = models.TextField(blank=True, null=True)
     img4_description = models.TextField(blank=True, null=True)
     img4_external_url = models.URLField(blank=True, null=True)
@@ -142,6 +151,10 @@ class PostImage(models.Model):
         )
     img4_tag.short_description = 'Second Image'
 
+    class Meta:
+        verbose_name = "Post Image"
+        verbose_name_plural = "Post Images"
+
     def __str__(self):
         return self.title
 
@@ -154,6 +167,7 @@ class EventDate(models.Model):
         (1900, '1900'),
         (2000, '2000'),
     )
+
     DECADES = (
         (10, '10'),
         (20, '20'),
@@ -220,7 +234,8 @@ class EventDate(models.Model):
         verbose_name = "Event Date"
         verbose_name_plural = "Event Dates"
         #
-        # Note: need a 'clean_date' check in admin.py to deal with the error below.
+        # Note: need a 'clean_date' check in admin.py to deal with the error
+        # below.
         # "UNIQUE constraint failed: ..."
         #
         unique_together = ('century', 'decade', 'year', 'month', 'day')
@@ -262,13 +277,6 @@ class EventDate(models.Model):
                         str(self.century), str(self.decade),
                         str(self.year)))
 
-    def get_db_prep_value(self, value, connection, prepared=False):
-        value = models.Field.get_db_prep_value(
-            self, value, connection, prepared)
-        if value is not None:
-            return connection.Database.Binary(self._dump(value))
-        return value
-
     def save(self, *args, **kwargs):
         self.date = self.compose_date()[0]
 
@@ -285,7 +293,9 @@ class Post(models.Model):
     author = models.ForeignKey(
         'auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    thumbnail_title = models.CharField(max_length=100, blank=True, null=True)
     text = models.TextField()
+    keywords = models.CharField(max_length=1000)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -319,11 +329,59 @@ class Post(models.Model):
         Slugify title if slug field doesn't exist.
         IMPORTANT: doesn't check to see if slug is a dupe!
         """
-        self.slug = slugify(self.title)
+
+        # first 50 char of the title
+        self.slug = slugify(self.title[0:49])
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
+
+class HomePost(models.Model):
+    CURRENT = (
+        (1, 'Yes'),
+        (0, 'No'),
+    )
+    current = models.IntegerField(choices=CURRENT, default=1)
+    title = models.CharField(max_length=200)
+    caption = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    alt_text = models.TextField(blank=True, null=True)
+
+    # ATTN!!: header image needs to be a long image width > 300px
+    header_post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                                    related_name='header_post', null=True,
+                                    blank=True)
+    # Alternative header post
+    header_post_2 = models.ForeignKey(Post, on_delete=models.CASCADE,
+                                      related_name='header_post_2', null=True,
+                                      blank=True)
+    # ATTN!!: header_post or header_post_2 should not be the same as any of the
+    # feature_posts.
+    # See clean(), the admin form validation, in admin.py.
+    feature_posts = models.ManyToManyField(Post, default=1,
+                                           related_name='feature_posts')
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    slug = models.SlugField(unique=True, null=True, blank=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    class Meta:
+        verbose_name = "Home Post"
+        verbose_name_plural = "Home Posts"
+        ordering = ['created_date']
+
+    def save(self, *args, **kwargs):
+        self.slug = "{}_{}".format('homepost_', slugify(self.title))
+        super(HomePost, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return "{} ({})".format(self.title, self.current)
 
 
 class Comment(models.Model):
